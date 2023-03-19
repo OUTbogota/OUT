@@ -8,6 +8,9 @@ export default class Usuario extends BaseModel {
   @column()
   public state: boolean
 
+  @column()
+  public rol_id: number
+
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
 

@@ -6,6 +6,7 @@ export default class Usuarios extends BaseSchema {
   public async up () {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
+      table.integer('rol_id').unsigned().references('id').inTable('roles').onDelete('CASCADE')
       table.boolean('state').notNullable()
       table.timestamps(true)
     })
