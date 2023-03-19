@@ -6,7 +6,7 @@ export default class Encargados extends BaseSchema {
   public async up () {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id_encargado')
-      table.string('nombre_encardo', 150).notNullable()
+      table.string('nombre_encargado', 150).notNullable()
       table.string('apellido_encargado', 150).notNullable()
       table.string('correo_encargado', 150).notNullable()
       table.string('cargo_encargado', 150).notNullable()
