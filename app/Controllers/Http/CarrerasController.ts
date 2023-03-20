@@ -3,7 +3,15 @@ import Carrera from 'App/Models/Carrera'
 import { request } from 'http'
 
 export default class CarrerasController {
-  public async index({}: HttpContextContract) {}
+  public async index({response}: HttpContextContract) {
+    try{
+      const carrera = await Carrera.all
+      response.ok(carrera)
+    }
+    catch(e){
+      response.badRequest({ msg:'Ocurrió un error'})
+    }
+  }
 
   public async create({}: HttpContextContract) {}
 
@@ -15,7 +23,7 @@ export default class CarrerasController {
       response.ok({msg:'El registro se creó correctamente', data: carrera})
     }
     catch(e){
-      response.badRequest('La carrera ya existe en la base de datos')
+      response.badRequest({ msg:'La carrera ya existe en la base de datos'})
     }
 
   }
@@ -27,7 +35,7 @@ export default class CarrerasController {
       response.ok({msg:'El registro se halló correctamente', data: carrera})
     }
     catch(e){
-      response.badRequest('No se encontró carrera con ese nombre')
+      response.badRequest({ msg:'No se encontró carrera con ese nombre'})
     }
   }
 
