@@ -3,7 +3,15 @@ import Encargado from 'App/Models/Encargado'
 import {request} from 'http'
 
 export default class EncargadosController {
-  //public async index({}: HttpContextContract) {}
+  public async index({ response}: HttpContextContract) {
+    try {
+      const encargado = await Encargado.all()
+
+      response.ok(encargado)
+    } catch (e) {
+      response.badRequest({ mensaje: "ocurrio un error"})      
+    }
+  }
 
   //public async create({}: HttpContextContract) {}
 
