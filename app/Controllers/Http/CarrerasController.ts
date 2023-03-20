@@ -5,7 +5,7 @@ import { request } from 'http'
 export default class CarrerasController {
   public async index({response}: HttpContextContract) {
     try{
-      const carrera = await Carrera.all
+      const carrera = await Carrera.all()
       response.ok(carrera)
     }
     catch(e){
