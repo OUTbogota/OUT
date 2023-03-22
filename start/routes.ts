@@ -24,6 +24,10 @@ Route.get('/', async () => {
   return { hello: 'world' }
 })
 
+Route.group(() => {
+  Route.post('/create', 'UsuariosController.createUsuario')
+}).prefix('api/Out/v1/usuarios')
+
 Route.resource('encargados', 'EncargadosController').apiOnly()
 Route.resource('carreras', 'CarrerasController').apiOnly()
 Route.resource('universidades', 'UniversidadesController').apiOnly()
