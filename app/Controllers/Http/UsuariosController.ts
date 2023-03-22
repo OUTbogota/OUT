@@ -4,6 +4,10 @@ import Env from '@ioc:Adonis/Core/Env'
 
 export default class UsuariosController {
 
+  public async createUsuario({request, response}) {
+
+  }
+
   public verifyToken(authorizationHeader: string) {
     let token = authorizationHeader.split(' ')
     jwt.verify(token, Env.get('JWT_SECRET_KEY'), (error: any) => {

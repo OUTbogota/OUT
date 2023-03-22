@@ -1,7 +1,7 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import UsuariosController from 'App/Controllers/Http/UsuariosController'
 
-export default class Auht {
+export default class Authjwt {
 
   public async handle(ctx: HttpContextContract, next: () => Promise<void>) {
     // code for middleware goes here. ABOVE THE NEXT CALL
