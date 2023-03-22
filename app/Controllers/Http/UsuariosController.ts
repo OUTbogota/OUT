@@ -25,6 +25,19 @@ export default class UsuariosController {
     }
   }
 
+  public async loginUsuario({auth, request,response}) {
+    const {email, password} = request.all()
+    try{
+      const token = await auth.use("api").attempt(email,password,{expiresIn:"60 mins"});
+      return{
+        token,
+        "msg" : "Usuario logueado"
+      }
+    } catch{
+      return response.unauthorized('Credenciales incorrectas')
+
+    }
+  }
   public verifyToken(authorizationHeader: string) {
     let token = authorizationHeader.split(' ')
     jwt.verify(token, Env.get('JWT_SECRET_KEY'), (error: any) => {

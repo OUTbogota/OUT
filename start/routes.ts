@@ -26,6 +26,7 @@ Route.get('/', async () => {
 
 Route.group(() => {
   Route.post('/create', 'UsuariosController.createUsuario')
+  Route.post('/login', 'UsuariosController.loginUsuario')
 }).prefix('api/Out/v1/usuarios')
 
 Route.resource('encargados', 'EncargadosController').apiOnly()
