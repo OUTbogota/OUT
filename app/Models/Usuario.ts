@@ -6,6 +6,18 @@ export default class Usuario extends BaseModel {
   public id: number
 
   @column()
+  public nombre: string
+
+  @column()
+  public apellido: string
+
+  @column()
+  public email: string
+
+  @column()
+  public password: string
+
+  @column()
   public state: boolean
 
   @column()
