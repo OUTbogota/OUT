@@ -27,8 +27,25 @@ Route.get('/', async () => {
 Route.group(() => {
   Route.post('/create', 'UsuariosController.createUsuario')
   Route.post('/login', 'UsuariosController.loginUsuario')
+  Route.get('/prueba', 'EncargadosController.index')
 }).prefix('api/Out/v1/usuarios')
 
-Route.resource('encargados', 'EncargadosController').apiOnly()
-Route.resource('carreras', 'CarrerasController').apiOnly()
-Route.resource('universidades', 'UniversidadesController').apiOnly()
+Route.group(() => {
+  Route.post('/store', 'EncargadosController.store')
+  Route.get('/index', 'EncargadosController.index')
+  Route.get('/show', 'EncargadosController.show')
+}).prefix('api/Out/v1/encargados')
+
+Route.group(() => {
+  Route.post('/store', 'CarrerasController.store')
+  Route.get('/index', 'CarrerasController.index')
+  Route.get('/show', 'CarrerasController.show')
+}).prefix('api/Out/v1/carreras')
+
+Route.group(() => {
+  Route.post('/store', 'UniversidadesController.store')
+  Route.get('/index', 'UniversidadesController.index')
+  Route.get('/show', 'UniversidadesController.show')
+}).prefix('api/Out/v1/universidades')
+
+
