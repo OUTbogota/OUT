@@ -29,6 +29,8 @@ Route.group(() => {
 }).prefix('api/Out/v1/roles')
 
 Route.group(() => {
+  Route.get('/index', 'UsuariosController.index')
+  Route.delete('/delete/:id', 'UsuariosController.delete')
   Route.post('/create', 'UsuariosController.createUsuario')
   Route.post('/login', 'UsuariosController.loginUsuario')
   Route.get('/prueba', 'EncargadosController.index')

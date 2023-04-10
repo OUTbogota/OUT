@@ -28,6 +28,28 @@ export default class UsuariosController {
     }
   }
 
+  public async index({response}) { 
+    try{
+      const usuarios = await Usuario.all()
+      response.status(200).send(usuarios)
+    }catch(error) {
+      response.status(400).send({mensaje: 'Error al obtener los usuarios'})
+    }
+  }
+
+  public async delete({params, response}) {
+    
+    try{
+    
+      const usuario = await Usuario.find(params.id)
+      usuario?.delete()
+      response.status(200).send({mensaje: 'Usuario eliminado correctamente'})
+    }catch(error) {
+      console.log(error);
+      response.status(400).send({mensaje: 'Error al eliminar el usuario'})
+    }
+  }
+
   public async loginUsuario({ request,response}) {
     const {email, password} = request.all()
     try{
