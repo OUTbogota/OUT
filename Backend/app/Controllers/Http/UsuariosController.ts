@@ -4,6 +4,7 @@ import Env from '@ioc:Adonis/Core/Env'
 import Usuario from 'App/Models/Usuario'
 import bcrypt from 'bcrypt'
 
+
 export default class UsuariosController {
 
   public async createUsuario({request, response}) {
@@ -27,19 +28,40 @@ export default class UsuariosController {
     }
   }
 
-  public async loginUsuario({auth, request,response}) {
+  public async loginUsuario({ request,response}) {
     const {email, password} = request.all()
     try{
-      const token = await auth.use("api").attempt(email,password,{expiresIn:"60 mins"});
-      return{
-        token,
-        "msg" : "Usuario logueado"
+      const user = await Usuario.findBy('email', email);
+      if(!user) {
+        throw new Error('Credenciales incorrectas');
       }
-    } catch{
+
+      const isPasswordValid = await bcrypt.compare(password, user.password);
+      if(!isPasswordValid) {
+        throw new Error('Credenciales incorrectas');
+      }
+
+      const payload = {
+        email: user.email,
+        id: user.id
+      }
+
+      const token = this.generarToken(payload)
+
+      return response.status(200).json({
+        mensaje: 'Usuario logueado correctamente',
+        token: token,
+        email: user.email
+      })
+
+    } catch(error){
+      console.log(error);
       return response.unauthorized('Credenciales incorrectas')
 
     }
   }
+
+
   public verifyToken(authorizationHeader: string) {
     let token = authorizationHeader.split(' ')
     jwt.verify(token, Env.get('JWT_SECRET_KEY'), (error: any) => {
@@ -48,6 +70,13 @@ export default class UsuariosController {
       }
       return true
     })
+  }
+
+  public  generarToken(payload: any){
+    const token = jwt.sign(payload, Env.get('JWT_SECRET_KEY'), {
+      expiresIn: "60 minutes"
+    })
+    return token
   }
 
   public obtenerPayload(authorizationHeader: string) {
