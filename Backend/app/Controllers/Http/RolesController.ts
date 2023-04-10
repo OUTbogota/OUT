@@ -1,7 +1,4 @@
-import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Rol from 'App/Models/Rol';
-import { logger } from 'Config/app';
-import { log } from 'console';
 export default class RolesController {
     
     public async index({response}) {

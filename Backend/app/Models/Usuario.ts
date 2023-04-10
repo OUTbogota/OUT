@@ -5,10 +5,10 @@ export default class Usuario extends BaseModel {
   @column({ isPrimary: true })
   public id: number
 
-  @column()
+  @column({columnName: "name"} )
   public nombre: string
 
-  @column()
+  @column({columnName: "lastname"} )
   public apellido: string
 
   @column()
