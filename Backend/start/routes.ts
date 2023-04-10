@@ -25,6 +25,10 @@ Route.get('/', async () => {
 })
 
 Route.group(() => {
+  Route.get('/index', 'RolesController.index')
+}).prefix('api/Out/v1/roles')
+
+Route.group(() => {
   Route.post('/create', 'UsuariosController.createUsuario')
   Route.post('/login', 'UsuariosController.loginUsuario')
   Route.get('/prueba', 'EncargadosController.index')
