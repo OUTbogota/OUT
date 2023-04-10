@@ -11,6 +11,7 @@ export default class UsuariosController {
     const salt = await bcrypt.genSalt(10)
     const passwordHash = await bcrypt.hash(password, salt)
     try{
+      console.log("ESTA ENTRANDO EN CREAR")
       await Usuario.create({
         nombre,
         apellido,
@@ -21,6 +22,7 @@ export default class UsuariosController {
       })
       response.status(201).send({mensaje: 'Usuario creado correctamente'})
     }catch(error) {
+      console.log(error);
       response.status(400).send({mensaje: 'El usuario ya existe'})
     }
   }

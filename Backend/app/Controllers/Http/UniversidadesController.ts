@@ -21,6 +21,7 @@ export default class UniversidadesController {
       response.ok({msg:'El registro se creó correctamente', data: universidad})
     }
     catch(e){
+      console.log(e);
       response.badRequest({ mensaje:'La universidad ya existe en la base de datos'})
     }
   }
