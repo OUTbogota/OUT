@@ -394,6 +394,28 @@
   font-family: Fredoka, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
     'Liberation Sans', sans-serif;
 }
+.registrarUsuarios {
+  position: absolute;
+  left: 837px;
+  top: 9px;
+  width: 285.7143px;
+  height: min-content;
+  text-align: center;
+  align-items: center;
+  flex-direction: column;
+}
+.textBlock3 {
+  color: #006dd1;
+  font-size: 30px;
+  font-family: Fredoka, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    'Liberation Sans', sans-serif;
+}
+.textBlock4 {
+  color: #006dd1;
+  font-size: 30px;
+  font-family: Fredoka, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    'Liberation Sans', sans-serif;
+}
 .line1 {
   position: absolute;
   left: 545.1429px;
@@ -408,9 +430,23 @@
   width: 100%;
   height: 100%;
 }
-.line32 {
+.line42 {
   position: absolute;
   left: 837px;
+  top: 12px;
+  width: 2px;
+  max-width: 100%;
+  height: 66px;
+  max-height: 100%;
+  overflow: visible;
+}
+.icon13 {
+  width: 100%;
+  height: 100%;
+}
+.line32 {
+  position: absolute;
+  left: 1123px;
   top: 0;
   width: 2px;
   max-width: 100%;
@@ -418,7 +454,7 @@
   max-height: 100%;
   overflow: visible;
 }
-.icon13 {
+.icon14 {
   width: 100%;
   height: 100%;
 }

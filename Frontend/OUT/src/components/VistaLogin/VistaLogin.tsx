@@ -22,9 +22,6 @@ export const VistaLogin: FC<Props> = memo(function VistaLogin(props = {}) {
       <div className={classes.contrasena}>Contraseña:</div>
       <div className={classes.rectangle102}></div>
       <div className={classes.iNGRESAR}>INGRESAR</div>
-      <div className={classes.rectangle2}></div>
-      <div className={classes.registrarme}>Registrarme</div>
-      <div className={classes.image3}></div>
       <div className={classes.correo}>Correo</div>
       <div className={classes.contrasena2}>Contraseña</div>
     </div>

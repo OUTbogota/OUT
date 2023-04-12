@@ -9,6 +9,7 @@ import { Ellipse4Icon } from './Ellipse4Icon.js';
 import { Line1Icon } from './Line1Icon.js';
 import { Line3Icon2 } from './Line3Icon2.js';
 import { Line3Icon } from './Line3Icon.js';
+import { Line4Icon2 } from './Line4Icon2.js';
 import { Line4Icon } from './Line4Icon.js';
 import { Line5Icon } from './Line5Icon.js';
 import { Line6Icon } from './Line6Icon.js';
@@ -79,11 +80,18 @@ export const VistaConsulta: FC<Props> = memo(function VistaConsulta(props = {}) 
         <div className={classes.textBlock}>Añadir</div>
         <div className={classes.textBlock2}> Encargados</div>
       </div>
+      <div className={classes.registrarUsuarios}>
+        <div className={classes.textBlock3}>Registrar</div>
+        <div className={classes.textBlock4}>Usuarios</div>
+      </div>
       <div className={classes.line1}>
         <Line1Icon className={classes.icon12} />
       </div>
+      <div className={classes.line42}>
+        <Line4Icon2 className={classes.icon13} />
+      </div>
       <div className={classes.line32}>
-        <Line3Icon2 className={classes.icon13} />
+        <Line3Icon2 className={classes.icon14} />
       </div>
       <div className={classes.line2}></div>
       <div className={classes.rectangle1}></div>

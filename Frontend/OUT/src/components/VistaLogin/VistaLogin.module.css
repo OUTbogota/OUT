@@ -148,41 +148,6 @@
   justify-content: center;
   flex-direction: column;
 }
-.rectangle2 {
-  position: absolute;
-  left: 1564px;
-  top: 0;
-  width: 506.2857px;
-  height: 90px;
-  border-radius: 80px;
-  background-color: #006dd1a1;
-}
-.registrarme {
-  color: #000;
-  font-size: 40px;
-  font-family: Fredoka, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
-    'Liberation Sans', sans-serif;
-  position: absolute;
-  left: 1658px;
-  top: 21px;
-  width: 236px;
-  height: 49px;
-  text-align: center;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
-.image3 {
-  position: absolute;
-  left: 1599.4285px;
-  top: 20px;
-  width: 50px;
-  height: 50px;
-  background-image:/* webpackIgnore: true */ url('/assets/image3.jpg');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
 .correo {
   color: #707070bd;
   font-size: 30px;

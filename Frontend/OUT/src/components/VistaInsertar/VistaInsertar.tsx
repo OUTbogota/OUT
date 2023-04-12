@@ -5,6 +5,7 @@ import resets from '../_resets.module.css';
 import { Line1Icon } from './Line1Icon.js';
 import { Line3Icon2 } from './Line3Icon2.js';
 import { Line3Icon } from './Line3Icon.js';
+import { Line5Icon } from './Line5Icon.js';
 import classes from './VistaInsertar.module.css';
 
 interface Props {
@@ -52,6 +53,13 @@ export const VistaInsertar: FC<Props> = memo(function VistaInsertar(props = {}) 
         <Line3Icon2 className={classes.icon3} />
       </div>
       <div className={classes.line2}></div>
+      <div className={classes.registrarUsuarios}>
+        <div className={classes.textBlock3}>Registrar</div>
+        <div className={classes.textBlock4}>Usuarios</div>
+      </div>
+      <div className={classes.line5}>
+        <Line5Icon className={classes.icon4} />
+      </div>
       <div className={classes.rectangle1}></div>
       <div className={classes.oUT}>OUT</div>
     </div>
