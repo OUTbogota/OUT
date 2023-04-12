@@ -133,6 +133,7 @@
   background-color: #006dd1;
 }
 .iNGRESAR {
+  pointer-events: none;
   color: #fff;
   font-size: 40px;
   font-weight: 600;
@@ -156,7 +157,7 @@
   position: absolute;
   left: 632px;
   top: 448px;
-  width: 364px;
+  width: 650px;
   height: 38px;
   justify-content: center;
   flex-direction: column;
@@ -169,8 +170,18 @@
   position: absolute;
   left: 632px;
   top: 641px;
-  width: 364px;
+  width: 650px;
   height: 38px;
   justify-content: center;
   flex-direction: column;
+}
+.botonIngresar{
+  cursor: pointer;
+}
+.rectangle102:hover {
+  background-color: #0052a1;
+}
+
+.rectangle102:active {
+  background-color: #003c7d;
 }

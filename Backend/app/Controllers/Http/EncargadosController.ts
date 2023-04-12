@@ -1,6 +1,6 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Encargado from 'App/Models/Encargado'
-import {request} from 'http'
+
 
 export default class EncargadosController {
   public async index({ response}: HttpContextContract) {
