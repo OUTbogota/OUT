@@ -12,44 +12,40 @@ interface Props {
   className?: string;
 }
 /* @figmaId 33:3 */
+
 export const VistaRegistro: FC<Props> = memo(function VistaRegistro(props = {}) {
+
   return (
     <div className={`${resets.storybrainResets} ${classes.root}`}>
       <div className={classes.rEGISTRO}>REGISTRO</div>
       <div className={classes.rectangle12}></div>
-      <div className={classes.rectangle10}></div>
-      <div className={classes.rectangle13}></div>
-      <div className={classes.rectangle14}></div>
-      <div className={classes.rectangle15}></div>
-      <div className={classes.rectangle16}></div>
+      <input className={classes.rectangle10} type="text" placeholder="Nombres" />
+      <input className={classes.rectangle13} type="text" placeholder="Apellidos" />
+      <input className={classes.rectangle14} type="text" placeholder="Correo"  />
+      <input className={classes.rectangle15} type="text" placeholder="Contraseña" />
+      <input className={classes.rectangle16} type="text" placeholder="Confirmar Contraseña" />
       <div className={classes.nombres}>Nombres:</div>
       <div className={classes.apellidos}>Apellidos:</div>
       <div className={classes.correoElectronico}>Correo electrónico:</div>
       <div className={classes.contrasena}>Contraseña:</div>
       <div className={classes.confirmarContrasena}>Confirmar contraseña:</div>
-      <div className={classes.nombres2}>Nombres</div>
-      <div className={classes.apellidos2}>Apellidos</div>
-      <div className={classes.correo}>Correo</div>
-      <div className={classes.contrasena2}>Contraseña</div>
-      <div className={classes.confirmarContrasena2}>Confirmar contraseña</div>
-      <div className={classes.rectangle102}></div>
-      <div className={classes.rEGISTRAR}>REGISTRAR</div>
+      <button className={classes.rEGISTRAR}>REGISTRAR</button>
       <div className={classes.rectangle2}></div>
       <div className={classes.line3}>
         <Line3Icon className={classes.icon} />
       </div>
       <div className={classes.nombreDeUsuario}>Nombre de usuario</div>
-      <div className={classes.image1}></div>
+      <button className={classes.image1}></button>
       <div className={classes.image3}></div>
-      <div className={classes.consultarEncargados}>Consultar Encargados</div>
-      <div className={classes.anadirEncargados}>
+      <button className={classes.consultarEncargados}>Consultar Encargados</button>
+      <button className={classes.anadirEncargados}>
         <div className={classes.textBlock}>Añadir</div>
         <div className={classes.textBlock2}> Encargados</div>
-      </div>
-      <div className={classes.registrarUsuarios}>
+      </button>
+      <button className={classes.registrarUsuarios}>
         <div className={classes.textBlock3}>Registrar</div>
         <div className={classes.textBlock4}>Usuarios</div>
-      </div>
+      </button>
       <div className={classes.line1}>
         <Line1Icon className={classes.icon2} />
       </div>
