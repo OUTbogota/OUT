@@ -78,8 +78,12 @@ export default class UsuariosController {
 
     } catch(error){
       console.log(error);
-      return response.unauthorized('Credenciales incorrectas')
-
+      if(error.message == 'Credenciales incorrectas') {
+        return response.status(400).json({
+          mensaje: 'Credenciales incorrectas'
+        })
+      }
+      return response.status(500).json({"mensaje": "Error en el servidor"})
     }
   }
 

@@ -1,6 +1,5 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Carrera from 'App/Models/Carrera'
-import { request } from 'http'
 
 export default class CarrerasController {
   public async index({response}: HttpContextContract) {
