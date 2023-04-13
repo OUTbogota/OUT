@@ -3,6 +3,11 @@ import type { FC } from 'react';
 import axios from 'axios';
 import { useState } from 'react';
 
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+import { useNavigate } from 'react-router-dom';
+
 import resets from '../_resets.module.css';
 import classes from './VistaLogin.module.css';
 
@@ -12,22 +17,35 @@ interface Props {
 /* @figmaId 33:33 */
 export const VistaLogin: FC<Props> = memo(function VistaLogin(props = {}) {
 
-  let email = '';
-  let password = '';
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const [token, setToken] = useState('');
+
+  const history = useNavigate();
+
 
   // ...
 
   const handleLogin = async () => {
+
+    console.log( email);
+    console.log(password);
+    
+    
     try {
-      const response = await axios.post('http://127.0.0.1:3333/api/Out/v1/usuarios/login', {
+      //const response = await axios.post('https://out-production.up.railway.app/api/Out/v1/usuarios/login', {
+
+        const response = await axios.post('http://127.0.0.1:3333/api/Out/v1/usuarios/login', {
         email: email,
         password: password,
       });
       const token = response.data.token;
       setToken(token); // Guarda el token en el estado del componente
+      history('/consulta');
+      toast.success('Sesión iniciada');
     } catch (error) {
+      toast.error('Error al iniciar sesión');
       console.error(error);
     }
   };
@@ -55,8 +73,7 @@ export const VistaLogin: FC<Props> = memo(function VistaLogin(props = {}) {
           placeholder="Correo"
           className={classes.correo}
           onChange={(e) => {
-            const value = e.target.value;
-            email = value;
+            setEmail(e.target.value)
           }}
         />
       </div>
@@ -66,11 +83,11 @@ export const VistaLogin: FC<Props> = memo(function VistaLogin(props = {}) {
           placeholder="Contraseña"
           className={classes.contrasena2}
           onChange={(e) => {
-            const value = e.target.value;
-            password = value;
+            setPassword(e.target.value)
           }}
         />
       </div>
+      <ToastContainer position="bottom-right" />
     </div>
   );
 });
