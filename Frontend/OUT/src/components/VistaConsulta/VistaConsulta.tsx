@@ -1,5 +1,6 @@
 import { memo } from 'react';
 import type { FC } from 'react';
+import { useState } from 'react'
 
 import resets from '../_resets.module.css';
 import { Ellipse1Icon } from './Ellipse1Icon.js';
@@ -23,13 +24,27 @@ interface Props {
 }
 /* @figmaId 4:2 */
 export const VistaConsulta: FC<Props> = memo(function VistaConsulta(props = {}) {
+
+  const [colorNombre, setColorNombre] = useState('#006DD1')
+  const [colorUniversidades, setColorUniversidades] = useState('white')
+
+  function activarBolaNombre(){
+    setColorNombre('#006DD1')
+    setColorUniversidades('white')
+  }
+
+  function activarBolaUniversidades(){
+    setColorNombre('white')
+    setColorUniversidades('#006DD1')
+  }
+
   return (
     <div className={`${resets.storybrainResets} ${classes.root}`}>
-      <div className={classes.rectangle11}></div>
-      <div className={classes.cargo}>Cargo</div>
-      <div className={classes.universidad}>Universidad</div>
-      <div className={classes.correoElectronico}>Correo electrónico</div>
-      <div className={classes.nombresYApellidos}>Nombres y Apellidos</div>
+      <div className={classes.tablaPanel}></div>
+      <div className={classes.cargoTablaText}>Cargo</div>
+      <div className={classes.universidadTablaText}>Universidad</div>
+      <div className={classes.correoElectronicoTablaText}>Correo electrónico</div>
+      <div className={classes.nombresYApellidosTablaText}>Nombres y Apellidos</div>
       <div className={classes.line4}>
         <Line4Icon className={classes.icon} />
       </div>
@@ -48,42 +63,53 @@ export const VistaConsulta: FC<Props> = memo(function VistaConsulta(props = {}) 
       <div className={classes.line6}>
         <Line6Icon className={classes.icon6} />
       </div>
-      <div className={classes.rectangle3}></div>
-      <div className={classes.rectangle4}></div>
-      <div className={classes.buscar}>Buscar </div>
-      <div className={classes.image2}></div>
+      <input className={classes.inputBusqueda} type="text" placeholder="Buscar" />
+      <div className={classes.buscarBoton}></div>
+      {/* boton de buscar */}
+      <div className={classes.buscarBoton}>
+        <div className={classes.buscarBotonFondo}></div>
+        <div className={classes.buscarBotonImagen}></div>
+      </div>
       <div className={classes.nombre}>Nombre</div>
       <div className={classes.buscarPor}>Buscar por:</div>
-      <div className={classes.universidad2}>Universidad</div>
-      <div className={classes.ellipse1}>
-        <Ellipse1Icon className={classes.icon7} />
-      </div>
-      <div className={classes.ellipse2}>
-        <Ellipse2Icon className={classes.icon8} />
-      </div>
-      <div className={classes.ellipse3}>
-        <Ellipse3Icon className={classes.icon9} />
-      </div>
-      <div className={classes.ellipse4}>
-        <Ellipse4Icon className={classes.icon10} />
-      </div>
-      <div className={classes.cONSULTADEENCARGADOS}>CONSULTA DE ENCARGADOS</div>
-      <div className={classes.rectangle2}></div>
+      <div className={classes.universidadBola}>Universidad</div>
+
+      <button className={classes.bolaNombre} onClick={()=>activarBolaNombre()}> 
+        <div className={classes.bolaExternaNombre}>
+          <Ellipse1Icon className={classes.iconoBolaExternaNombre} />
+        </div>
+
+        <div className={classes.bolaInternaNombre}>
+          <Ellipse3Icon color={colorNombre} className={classes.iconoBolaInternaNombre} />
+        </div>
+      </button>
+      
+      <button className={classes.bolaUniversidad} onClick={()=>activarBolaUniversidades()}> 
+        <div className={classes.bolaExternaUniversidad}>
+          <Ellipse2Icon className={classes.iconoBolaExternaUniversidad} />
+        </div>
+        <div className={classes.bolaInternaUniversidad}>
+          <Ellipse4Icon color={colorUniversidades} className={classes.iconoBolaInternaUniversidad} />
+        </div>
+      </button>
+      
+      <div className={classes.consultaDeEncargadosText}>CONSULTA DE ENCARGADOS</div>
+      <div className={classes.nombreDeUsuarioFondo}></div>
       <div className={classes.line3}>
         <Line3Icon className={classes.icon11} />
       </div>
-      <div className={classes.nombreDeUsuario}>Nombre de usuario</div>
-      <div className={classes.image1}></div>
-      <div className={classes.image3}></div>
-      <div className={classes.consultarEncargados}>Consultar Encargados</div>
-      <div className={classes.anadirEncargados}>
-        <div className={classes.textBlock}>Añadir</div>
-        <div className={classes.textBlock2}> Encargados</div>
-      </div>
-      <div className={classes.registrarUsuarios}>
-        <div className={classes.textBlock3}>Registrar</div>
-        <div className={classes.textBlock4}>Usuarios</div>
-      </div>
+      <div className={classes.nombreDeUsuarioText}>Nombre de usuario</div>
+      <div className={classes.salirBoton}></div>
+      <div className={classes.nombreDeUsuarioImagen}></div>
+      <button className={classes.consultarEncargados}>Consultar Encargados</button>
+      <button className={classes.anadirEncargados}>
+        <div className={classes.anadirEncargadosText}>Añadir</div>
+        <div className={classes.anadirEncargadosText}> Encargados</div>
+      </button>
+      <button className={classes.registrarUsuarios}>
+        <div className={classes.registrarUsuariosText}>Registrar</div>
+        <div className={classes.registrarUsuariosText}>Usuarios</div>
+      </button>
       <div className={classes.line1}>
         <Line1Icon className={classes.icon12} />
       </div>
@@ -94,8 +120,8 @@ export const VistaConsulta: FC<Props> = memo(function VistaConsulta(props = {}) 
         <Line3Icon2 className={classes.icon14} />
       </div>
       <div className={classes.line2}></div>
-      <div className={classes.rectangle1}></div>
-      <div className={classes.oUT}>OUT</div>
+      <div className={classes.outFondo}></div>
+      <div className={classes.outText}>OUT</div>
     </div>
   );
 });

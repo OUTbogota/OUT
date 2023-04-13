@@ -6,7 +6,7 @@
   background-color: #fff;
   overflow: hidden;
 }
-.rectangle11 {
+.tablaPanel {
   position: absolute;
   left: 145px;
   top: 479px;
@@ -17,7 +17,7 @@
   border-radius: 80px;
   background-color: #ffffffa1;
 }
-.cargo {
+.cargoTablaText {
   color: #000;
   font-size: 30px;
   font-family: Fredoka, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
@@ -30,7 +30,7 @@
   white-space: nowrap;
   flex-direction: column;
 }
-.universidad {
+.universidadTablaText {
   color: #000;
   font-size: 30px;
   font-family: Fredoka, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
@@ -43,7 +43,7 @@
   white-space: nowrap;
   flex-direction: column;
 }
-.correoElectronico {
+.correoElectronicoTablaText {
   color: #000;
   font-size: 30px;
   font-family: Fredoka, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
@@ -56,7 +56,7 @@
   white-space: nowrap;
   flex-direction: column;
 }
-.nombresYApellidos {
+.nombresYApellidosTablaText {
   color: #000;
   font-size: 30px;
   font-family: Fredoka, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
@@ -153,7 +153,7 @@
   width: 100%;
   height: 100%;
 }
-.rectangle3 {
+.inputBusqueda {
   position: absolute;
   left: 365px;
   top: 360px;
@@ -161,8 +161,23 @@
   height: 70px;
   border-radius: 35px;
   background-color: #e4e4e4;
+  box-shadow: inset 0px 4px 4px 0px #00000040;
+  color: #707070bd;
+  font-size: 30px;
+  font-family: Fredoka, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    'Liberation Sans', sans-serif;
+  position: absolute;
+  text-indent: 35px;
+  justify-content: center;
+  flex-direction: column;
 }
-.rectangle4 {
+.inputBusqueda::placeholder {
+  color: #707070bd;
+}
+.buscarBoton:hover .buscarBotonFondo {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+.buscarBotonFondo {
   position: absolute;
   left: 1438px;
   top: 368px;
@@ -172,20 +187,10 @@
   background-color: #fff;
   box-shadow: inset 0px 4px 4px 0px #00000040;
 }
-.buscar {
-  color: #707070bd;
-  font-size: 30px;
-  font-family: Fredoka, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
-    'Liberation Sans', sans-serif;
-  position: absolute;
-  left: 409px;
-  top: 376px;
-  width: 364px;
-  height: 38px;
-  justify-content: center;
-  flex-direction: column;
+.buscarBoton:hover {
+  cursor: pointer;
 }
-.image2 {
+.buscarBotonImagen {
   position: absolute;
   left: 1469px;
   top: 375px;
@@ -195,6 +200,9 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+.buscarBoton:active .buscarBotonFondo {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.85);
 }
 .nombre {
   color: #000;
@@ -222,7 +230,7 @@
   white-space: nowrap;
   flex-direction: column;
 }
-.universidad2 {
+.universidadBola {
   transform-origin: top left;
   color: #000;
   font-size: 25px;
@@ -237,55 +245,87 @@
   flex-direction: column;
   transform: matrix(0.9999, -0.0157, 0.0157, 0.9999, 0, 0);
 }
-.ellipse1 {
+
+.bolaNombre{
+  border-radius: 50%;
+}
+.bolaNombre:hover {
+  cursor: pointer;
+}
+.bolaNombre:active .bolaExternaNombre{
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.bolaExternaNombre {
   position: absolute;
   left: 409px;
   top: 304px;
   width: 32px;
   height: 32px;
   overflow: visible;
+  border-radius: 50%;
 }
-.icon7 {
+.iconoBolaExternaNombre {
   width: 100%;
   height: 100%;
 }
-.ellipse2 {
-  position: absolute;
-  left: 650px;
-  top: 304px;
-  width: 32px;
-  height: 32px;
-  overflow: visible;
-}
-.icon8 {
-  width: 100%;
-  height: 100%;
-}
-.ellipse3 {
+
+.bolaInternaNombre {
   position: absolute;
   left: 415px;
   top: 310px;
   width: 20px;
   height: 20px;
   overflow: visible;
+  border-radius: 50%;
 }
-.icon9 {
+.iconoBolaInternaNombre {
   width: 100%;
   height: 100%;
+  border-radius: 50%;
 }
-.ellipse4 {
+
+.bolaUniversidad{
+  border-radius: 50%;
+}
+.bolaUniversidad:hover {
+  cursor: pointer;
+}
+.bolaUniversidad:active .bolaExternaUniversidad{
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.bolaExternaUniversidad {
+  position: absolute;
+  left: 650px;
+  top: 304px;
+  width: 32px;
+  height: 32px;
+  overflow: visible;
+  border-radius: 50%;
+}
+.iconoBolaExternaUniversidad {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.bolaInternaUniversidad {
   position: absolute;
   left: 656px;
   top: 310px;
   width: 20px;
   height: 20px;
   overflow: visible;
+  border-radius: 50%;
 }
-.icon10 {
+.iconoBolaInternaUniversidad {
   width: 100%;
   height: 100%;
+  border-radius: 50%;
 }
-.cONSULTADEENCARGADOS {
+
+.consultaDeEncargadosText {
   color: #000;
   font-size: 45px;
   font-family: Fredoka, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
@@ -299,7 +339,7 @@
   white-space: nowrap;
   flex-direction: column;
 }
-.rectangle2 {
+.nombreDeUsuarioFondo {
   position: absolute;
   left: 1510px;
   top: 0;
@@ -322,7 +362,7 @@
   width: 100%;
   height: 100%;
 }
-.nombreDeUsuario {
+.nombreDeUsuarioText {
   color: #000;
   font-size: 30px;
   font-family: Fredoka, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
@@ -335,7 +375,7 @@
   justify-content: center;
   flex-direction: column;
 }
-.image1 {
+.salirBoton {
   position: absolute;
   left: 1837.9999px;
   top: 20px;
@@ -346,7 +386,11 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
-.image3 {
+.salirBoton:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Sombreado al pasar el mouse */
+  cursor: pointer;
+}
+.nombreDeUsuarioImagen {
   position: absolute;
   left: 1545.4285px;
   top: 20px;
@@ -371,6 +415,10 @@
   align-items: center;
   flex-direction: column;
 }
+.consultarEncargados:hover {
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Sombreado al pasar el mouse */
+}
 .anadirEncargados {
   position: absolute;
   left: 545.1429px;
@@ -381,14 +429,11 @@
   align-items: center;
   flex-direction: column;
 }
-.textBlock {
-  color: #006dd1;
-  font-size: 30px;
-  font-family: Fredoka, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
-    'Liberation Sans', sans-serif;
+.anadirEncargados:hover {
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Sombreado al pasar el mouse */
 }
-.textBlock2 {
-  margin-top: 0;
+.anadirEncargadosText {
   color: #006dd1;
   font-size: 30px;
   font-family: Fredoka, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
@@ -404,13 +449,11 @@
   align-items: center;
   flex-direction: column;
 }
-.textBlock3 {
-  color: #006dd1;
-  font-size: 30px;
-  font-family: Fredoka, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
-    'Liberation Sans', sans-serif;
+.registrarUsuarios:hover {
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Sombreado al pasar el mouse */
 }
-.textBlock4 {
+.registrarUsuariosText {
   color: #006dd1;
   font-size: 30px;
   font-family: Fredoka, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
@@ -470,7 +513,7 @@
   outline: solid 1px #e4e4e4;
   transform: matrix(-1, 0, 0, -1, 0, 0) translate(-50%, -50%);
 }
-.rectangle1 {
+.outFondo {
   position: absolute;
   left: 0;
   top: 0;
@@ -478,7 +521,7 @@
   height: 90px;
   background-color: #006dd1;
 }
-.oUT {
+.outText {
   background-image: radial-gradient(
     ellipse 127.99999999999999px 45px at 128px 44.99999999999999px,
     #ffff 0%,
