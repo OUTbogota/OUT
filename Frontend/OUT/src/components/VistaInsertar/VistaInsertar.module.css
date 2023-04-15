@@ -14,6 +14,15 @@
   height: 76px;
   border-radius: 80px;
   background-color: #006dd1;
+  color: #fff;
+  font-size: 40px;
+  font-weight: 600;
+  font-family: Fredoka, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    'Liberation Sans', sans-serif;
+  text-align: center;
+  align-items: center;
+  white-space: nowrap;
+  flex-direction: column;
 }
 .lISTO {
   color: #fff;
@@ -44,6 +53,11 @@
 }
 .rectangle9 {
   position: absolute;
+  /* color: #707070bd; */
+  font-size: 30px;
+  font-family: Fredoka, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    'Liberation Sans', sans-serif;
+  text-indent: 20px;
   left: 367px;
   top: 805px;
   width: 1189px;
@@ -80,6 +94,11 @@
 }
 .rectangle7 {
   position: absolute;
+  /* color: #707070bd; */
+  font-size: 30px;
+  font-family: Fredoka, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    'Liberation Sans', sans-serif;
+  text-indent: 20px;
   left: 367px;
   top: 651px;
   width: 1189px;
@@ -116,6 +135,11 @@
 }
 .rectangle6 {
   position: absolute;
+  /* color: #707070bd; */
+  font-size: 30px;
+  font-family: Fredoka, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    'Liberation Sans', sans-serif;
+  text-indent: 20px;
   left: 367px;
   top: 497px;
   width: 1189px;
@@ -152,6 +176,11 @@
 }
 .rectangle8 {
   position: absolute;
+  /* color: #707070bd; */
+  font-size: 30px;
+  font-family: Fredoka, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    'Liberation Sans', sans-serif;
+  text-indent: 20px;
   left: 972px;
   top: 343px;
   width: 584px;
@@ -188,6 +217,11 @@
 }
 .rectangle3 {
   position: absolute;
+  /* color: #707070bd; */
+  font-size: 30px;
+  font-family: Fredoka, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    'Liberation Sans', sans-serif;
+  text-indent: 20px;
   left: 367px;
   top: 343px;
   width: 585px;
@@ -396,7 +430,7 @@
 }
 .line5 {
   position: absolute;
-  left: 855px;
+  left: 835px;
   top: 12px;
   width: 2px;
   max-width: 100%;
@@ -417,6 +451,156 @@
   background-color: #006dd1;
 }
 .oUT {
+  background-image: radial-gradient(
+    ellipse 127.99999999999999px 45px at 128px 44.99999999999999px,
+    #ffff 0%,
+    #ffff 100%
+  );
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 70px;
+  font-weight: 500;
+  font-family: Fredoka, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    'Liberation Sans', sans-serif;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 256px;
+  height: 90px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.button {
+  display: inline-block;
+  text-align: center;
+  font-weight: bold;
+  font-size: 18px;
+  color: #ffffff;
+  text-decoration: none;
+  line-height: 90px;
+  cursor: pointer;
+}
+.nombreDeUsuarioFondo {
+  position: absolute;
+  left: 1510px;
+  top: 0;
+  width: 506.2857px;
+  height: 90px;
+  border-radius: 80px;
+  background-color: #006dd1a1;
+}
+.nombreDeUsuarioText {
+  color: #000;
+  font-size: 30px;
+  font-family: Fredoka, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    'Liberation Sans', sans-serif;
+  position: absolute;
+  left: 1615.1428px;
+  top: 21px;
+  width: 206.8571px;
+  height: 49px;
+  justify-content: center;
+  flex-direction: column;
+}
+.salirBoton {
+  position: absolute;
+  left: 1837.9999px;
+  top: 20px;
+  width: 50px;
+  height: 50px;
+  background-image:/* webpackIgnore: true */ url('/assets/image1.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.salirBoton:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Sombreado al pasar el mouse */
+  cursor: pointer;
+}
+.nombreDeUsuarioImagen {
+  position: absolute;
+  left: 1545.4285px;
+  top: 20px;
+  width: 50px;
+  height: 50px;
+  background-image:/* webpackIgnore: true */ url('/assets/image3.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.consultarEncargados {
+  color: #006dd1;
+  font-size: 30px;
+  font-family: Fredoka, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    'Liberation Sans', sans-serif;
+  position: absolute;
+  left: 259.4286px;
+  top: 9px;
+  width: 285.7143px;
+  height: min-content;
+  text-align: center;
+  align-items: center;
+  flex-direction: column;
+}
+.consultarEncargados:hover {
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Sombreado al pasar el mouse */
+}
+.anadirEncargados {
+  position: absolute;
+  left: 545.1429px;
+  top: 9px;
+  width: 285.7143px;
+  height: min-content;
+  text-align: center;
+  align-items: center;
+  flex-direction: column;
+}
+.anadirEncargados:hover {
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Sombreado al pasar el mouse */
+}
+.anadirEncargadosText {
+  color: #006dd1;
+  font-size: 30px;
+  font-family: Fredoka, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    'Liberation Sans', sans-serif;
+}
+.registrarUsuarios {
+  position: absolute;
+  left: 837px;
+  top: 9px;
+  width: 285.7143px;
+  height: min-content;
+  text-align: center;
+  align-items: center;
+  flex-direction: column;
+}
+.registrarUsuarios:hover {
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Sombreado al pasar el mouse */
+}
+.registrarUsuariosText {
+  color: #006dd1;
+  font-size: 30px;
+  font-family: Fredoka, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    'Liberation Sans', sans-serif;
+}
+.outFondo {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 256px;
+  height: 90px;
+  background-color: #006dd1;
+}
+.outText {
   background-image: radial-gradient(
     ellipse 127.99999999999999px 45px at 128px 44.99999999999999px,
     #ffff 0%,
