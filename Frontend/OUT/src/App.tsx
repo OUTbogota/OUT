@@ -20,13 +20,11 @@ export const App: FC<Props> = memo(function App(props = {}) {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<VistaLogin />} />
-          <Route path="/registro" element={<VistaRegistro />} />
-          <Route path="/consulta" element={
-            <ProtectedRoute>
-              <VistaConsulta />
-            </ProtectedRoute>
-          } />
-          <Route path="/insertar" element={<VistaInsertar />} />
+          <Route element={<ProtectedRoute/>}>
+            <Route path="/consulta" element={<VistaConsulta />} />
+            <Route path="/insertar" element={<VistaInsertar />} />
+            <Route path="/registro" element={<VistaRegistro />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </div>

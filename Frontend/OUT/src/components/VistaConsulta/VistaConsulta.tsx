@@ -62,6 +62,14 @@ export const VistaConsulta: FC<Props> = memo(function VistaConsulta(props = {}) 
     setColorUniversidades('#006DD1')
   }
 
+  const handleInsertar = () => {
+    history('/insertar');
+  }
+
+  const handleRegistro = () => {
+    history('/registro');
+  }
+
 
 
   return (
@@ -119,7 +127,7 @@ export const VistaConsulta: FC<Props> = memo(function VistaConsulta(props = {}) 
         </div>
       </button>
       
-      <div className={classes.consultaDeEncargadosText}>CONSULTA DE ENCARGADOS</div>
+      <div className={classes.consultaDeEncargadosText}  >CONSULTA DE ENCARGADOS</div>
       <div className={classes.nombreDeUsuarioFondo}></div>
       <div className={classes.line3}>
         <Line3Icon className={classes.icon11} />
@@ -130,11 +138,11 @@ export const VistaConsulta: FC<Props> = memo(function VistaConsulta(props = {}) 
       <div className={classes.salirBoton} onClick={logut}></div>
       <div className={classes.nombreDeUsuarioImagen}></div>
       <button className={classes.consultarEncargados}>Consultar Encargados</button>
-      <button className={classes.anadirEncargados}>
+      <button className={classes.anadirEncargados} onClick={ handleInsertar }>
         <div className={classes.anadirEncargadosText}>Añadir</div>
         <div className={classes.anadirEncargadosText}> Encargados</div>
       </button>
-      <button className={classes.registrarUsuarios}>
+      <button className={classes.registrarUsuarios} onClick={ handleRegistro }>
         <div className={classes.registrarUsuariosText}>Registrar</div>
         <div className={classes.registrarUsuariosText}>Usuarios</div>
       </button>

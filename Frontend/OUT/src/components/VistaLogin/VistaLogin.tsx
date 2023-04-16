@@ -30,10 +30,7 @@ export const VistaLogin: FC<Props> = memo(function VistaLogin(props = {}) {
 
   /**
    * Maneja el inicio de sesión
-   * @param {string} email Correo electrónico del usuario
-   * @param {string} password Contraseña del usuario
-   * @returns {Promise<void>}
-   * 
+   *
    */
 
   const handleLogin = async () => {
@@ -43,7 +40,7 @@ export const VistaLogin: FC<Props> = memo(function VistaLogin(props = {}) {
     
     
     try {
-      //const response = await axios.post('https://out-production.up.railway.app/api/Out/v1/usuarios/login', {
+        //const response = await axios.post('https://out-production.up.railway.app/api/Out/v1/usuarios/login', {
 
         const response = await axios.post('http://127.0.0.1:3333/api/Out/v1/usuarios/login', {
         email: email,

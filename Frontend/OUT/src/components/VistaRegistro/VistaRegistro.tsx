@@ -43,6 +43,8 @@ export const VistaRegistro: FC<Props> = memo(function VistaRegistro(props = {}) 
   }
 
   const handleGoLogin = async () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user')
     history('/');
   }
 

@@ -63,6 +63,8 @@ export const VistaInsertar: FC<Props> = memo(function VistaInsertar(props = {}) 
   }
 
   const handleGoLogin = async () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
     history('/');
   }
 
