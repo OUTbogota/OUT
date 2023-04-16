@@ -3,7 +3,7 @@ import type { FC } from 'react';
 import { useNavigate } from "react-router-dom";
 
 import axios from 'axios';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -13,12 +13,21 @@ import { Line1Icon } from './Line1Icon.js';
 import { Line3Icon2 } from './Line3Icon2.js';
 import { Line3Icon } from './Line3Icon.js';
 import { Line5Icon } from './Line5Icon.js';
+import { Ellipse5Icon } from './Ellipse5Icon';
 import classes from './VistaInsertar.module.css';
+
+import Modal from './VentanaEmer';
 
 interface Props {
   className?: string;
   onClick?: () => void;
 }
+
+interface Option {
+  id_universidad: number;
+  nombre_universidad: string;
+}
+
 /* @figmaId 15:51 */
 export const VistaInsertar: FC<Props> = memo(function VistaInsertar(props = {}) {
   
@@ -27,6 +36,17 @@ export const VistaInsertar: FC<Props> = memo(function VistaInsertar(props = {}) 
   const [correo, setCorreo] = useState('');
   const [cargo, setCargo] = useState('');
   const [universidad, setUni] = useState('');
+  // Opciones de selección múltiple para el campo universidad
+  const [options, setOptions] = useState<Option[]>([]);
+
+  // Modal para ventana emergente al agregar universidad
+  const [showModal, setShowModal] = useState(false);
+  const [nueva_uni, setNuevaUniversidad] = useState('');
+  
+
+  const toggleModal = () => {
+    setShowModal(!showModal);
+  };
 
   const history = useNavigate();
 
@@ -45,6 +65,54 @@ export const VistaInsertar: FC<Props> = memo(function VistaInsertar(props = {}) 
   const handleGoLogin = async () => {
     history('/');
   }
+
+  useEffect(() => {
+    console.log("Entro universidades");
+    axios.get('http://127.0.0.1:3333/api/Out/v1/universidades/index')
+      .then(response => {
+        console.log(response.data);
+        setOptions(response.data);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }, []);
+
+  const handleAnadirUniversidad = async () => {
+    console.log(nueva_uni);
+
+    try{
+      axios.post('http://127.0.0.1:3333/api/Out/v1/universidades/store',{
+        nombre_universidad:nueva_uni,
+      })
+      .then((response)=>{
+        const message = response.data;
+        console.log(message.msg);
+        axios.get('http://127.0.0.1:3333/api/Out/v1/universidades/index')
+          .then(response => {
+            console.log(response.data);
+            setOptions(response.data);
+          })
+          .catch(error => {
+            console.error(error);
+          });
+        toast.success(message.msg);
+
+        
+      })
+      .catch((error)=>{
+        if (error.response){
+          const message = error.response.data;
+          console.log(message.mensaje);
+          toast.error(message.mensaje);
+        }
+      })
+
+    } catch (error) {
+      toast.error('Error al ingresar la universidad');
+      console.log(error);
+    }
+  };
 
   const handleAnadir = async () => {
 
@@ -86,10 +154,51 @@ export const VistaInsertar: FC<Props> = memo(function VistaInsertar(props = {}) 
     <div className={`${resets.storybrainResets} ${classes.root}`}>
       <button className={classes.rectangle10} onClick={handleAnadir}>LISTO</button>
       <div className={classes.rectangle5}></div>
-      <button className={classes.botonAnadir}>+</button>
-      <select className={classes.rectangle9} onChange={(e)=>{setUni(e.target.value)}}>
-        <option value="UNAL">UNAL</option>
-        <option value="CUN" selected>CUN</option>
+      {/* <button className={classes.botonAnadir}>+</button> */}
+      <div>
+        <button className={classes.botonAnadir} onClick={toggleModal}>+</button>
+        {showModal && (
+          <Modal>
+            {/* <h1>Contenido del modal</h1>
+            <p>Este es el contenido que se mostrará en el modal.</p>
+            <button onClick={toggleModal}>Cerrar</button> */}
+            <div className={classes.rectangle10_2}></div>
+            <button className={classes.aNADIR} onClick={handleAnadirUniversidad}>AÑADIR</button>
+            <div className={classes.anadirUniversidadAsegurateQueA}>
+              <p className={classes.labelWrapper}>
+                <span className={classes.label}>Añadir universidad </span>
+                <span className={classes.label2}>(Asegurate que aún no esté registrada):</span>
+              </p>
+            </div>
+            {/* <div className={classes.universidad}>Universidad</div> */}
+            <input 
+              type="text" 
+              placeholder="Universidad" 
+              className={classes.universidad}
+              onChange={(e) => {
+                setNuevaUniversidad(e.target.value)
+              }}  
+            />
+            <button className={classes.ellipse5} onClick={toggleModal} >
+              <Ellipse5Icon className={classes.icon}/>
+            </button>
+            <button className={classes.x} onClick={toggleModal}>X</button>
+            
+          </Modal>
+        )}
+      </div>
+      {/* <select className={classes.rectangle9} onChange={(e)=>{setUni(e.target.value)}}>
+        {options.map(option => (
+          <option value={option.value}>{option.value}</option>
+        ))}
+      </select> */}
+      <select className={classes.rectangle9} onChange={(e) => {setUni(e.target.value)}}>
+        <option value="">--Seleccione una opción--</option>
+        {options.map(option => (
+          <option value={option.nombre_universidad}>
+            {option.nombre_universidad}
+          </option>
+        ))}
       </select>
       <div className={classes.universidad2}>Universidad:</div>
       <div className={classes.rectangle7}></div>
@@ -134,7 +243,7 @@ export const VistaInsertar: FC<Props> = memo(function VistaInsertar(props = {}) 
       <div className={classes.nombres2}>Nombres:</div>
       <div className={classes.aNADIRENCARGADOS}>AÑADIR ENCARGADOS</div>
       <button className={classes.consultarEncargados} onClick={handleGoConsulta} >Consultar Encargados</button>
-      <button className={classes.anadirEncargados} onClick={handleAnadir}>
+      <button className={classes.anadirEncargados} onClick={handleGoAnadir}>
         <div className={classes.anadirEncargadosText}>Añadir</div>
         <div className={classes.anadirEncargadosText}> Encargados</div>
       </button>
@@ -144,9 +253,6 @@ export const VistaInsertar: FC<Props> = memo(function VistaInsertar(props = {}) 
       </button>
       <div className={classes.line1}>
         <Line1Icon className={classes.icon2} />
-      </div>
-      <div className={classes.line42}>
-        <Line3Icon2 className={classes.icon3} />
       </div>
       <div className={classes.line5}>
         <Line5Icon className={classes.icon4} />
@@ -161,7 +267,7 @@ export const VistaInsertar: FC<Props> = memo(function VistaInsertar(props = {}) 
         <Line3Icon className={classes.icon11} />
       </div> */}
       <div className={classes.nombreDeUsuarioText}>Nombre de usuario</div>
-      <div className={classes.salirBoton}></div>
+      <button className={classes.salirBoton} onClick={handleGoLogin}></button>
       <div className={classes.nombreDeUsuarioImagen}></div>
 
       <div className={classes.outFondo}></div>

@@ -17,8 +17,13 @@ export default class UniversidadesController {
   public async store({response,request}: HttpContextContract) {
     try {
       const universidad = request.all()
-      await Universidad.create(universidad)
-      response.ok({msg:'El registro se creó correctamente', data: universidad})
+      if(universidad.nombre_universidad != ""){
+        universidad.state = true;
+        await Universidad.create(universidad);
+        response.ok({msg:'El registro se creó correctamente', data: universidad})
+      } else {
+        response.status(400).send({mensaje: 'No pueden haber campos vacíos'})
+      }
     }
     catch(e){
       console.log(e);
