@@ -3,29 +3,39 @@ import type { FC } from 'react';
 import axios from 'axios';
 import { useState } from 'react';
 
+
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { useNavigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
 import resets from '../_resets.module.css';
 import classes from './VistaLogin.module.css';
 
 interface Props {
   className?: string;
+    
 }
 /* @figmaId 33:33 */
 export const VistaLogin: FC<Props> = memo(function VistaLogin(props = {}) {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [user, setUser] = useState(null);
 
   const [token, setToken] = useState('');
 
   const history = useNavigate();
 
 
-  // ...
+  /**
+   * Maneja el inicio de sesión
+   * @param {string} email Correo electrónico del usuario
+   * @param {string} password Contraseña del usuario
+   * @returns {Promise<void>}
+   * 
+   */
 
   const handleLogin = async () => {
 
@@ -39,11 +49,25 @@ export const VistaLogin: FC<Props> = memo(function VistaLogin(props = {}) {
         const response = await axios.post('http://127.0.0.1:3333/api/Out/v1/usuarios/login', {
         email: email,
         password: password,
-      });
-      const token = response.data.token;
-      setToken(token); // Guarda el token en el estado del componente
-      history('/consulta');
-      toast.success('Sesión iniciada');
+        });
+      
+        const user =response.data.user
+        setUser(user);
+      
+        const token = response.data.token;
+
+
+
+        setToken(token); // Guarda el token en el estado del componente
+        localStorage.setItem('token', token); // Guarda el token en el localStorage
+        localStorage.setItem('user', user); // Guarda el usuario en el localStorage
+      
+        history('/consulta', { state: { user}});
+
+        toast.success('Sesión iniciada');
+        //return <Navigate to={'/consulta'} state={{ user }}/>
+      
+
     } catch (error) {
       toast.error('Error al iniciar sesión');
       console.error(error);

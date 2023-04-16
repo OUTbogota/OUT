@@ -2,6 +2,7 @@
 import jwt from 'jsonwebtoken'
 import Env from '@ioc:Adonis/Core/Env'
 import Usuario from 'App/Models/Usuario'
+import Rol from 'App/Models/Rol'
 import bcrypt from 'bcrypt'
 
 
@@ -37,7 +38,7 @@ export default class UsuariosController {
     }
   }
 
-  public async index({response}) { 
+  public async index({response}) {
     try{
       const usuarios = await Usuario.all()
       response.status(200).send(usuarios)
@@ -47,9 +48,9 @@ export default class UsuariosController {
   }
 
   public async delete({params, response}) {
-    
+
     try{
-    
+
       const usuario = await Usuario.find(params.id)
       usuario?.delete()
       response.status(200).send({mensaje: 'Usuario eliminado correctamente'})
@@ -82,7 +83,12 @@ export default class UsuariosController {
       return response.status(200).json({
         mensaje: 'Usuario logueado correctamente',
         token: token,
-        email: user.email
+        user:{
+          id: user.id,
+          nombre: user.nombre,
+          email: user.email,
+          rol: await Rol.find(user.rol_id).then(rol => rol?.nombre_rol)
+        }
       })
 
     } catch(error){

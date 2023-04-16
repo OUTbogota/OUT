@@ -1,6 +1,8 @@
 import { memo } from 'react';
 import type { FC } from 'react';
 import { useState } from 'react'
+import {Navigate, useLocation} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import resets from '../_resets.module.css';
 import { Ellipse1Icon } from './Ellipse1Icon.js';
@@ -18,15 +20,39 @@ import { Line7Icon } from './Line7Icon.js';
 import { Line8Icon } from './Line8Icon.js';
 import { Line9Icon } from './Line9Icon.js';
 import classes from './VistaConsulta.module.css';
+import {VistaLogin} from "../VistaLogin/VistaLogin";
 
 interface Props {
   className?: string;
 }
+
+
+
 /* @figmaId 4:2 */
 export const VistaConsulta: FC<Props> = memo(function VistaConsulta(props = {}) {
 
-  const [colorNombre, setColorNombre] = useState('#006DD1')
-  const [colorUniversidades, setColorUniversidades] = useState('white')
+    const location = useLocation();
+    const history = useNavigate();
+
+    const [colorNombre, setColorNombre] = useState('#006DD1')
+    const [colorUniversidades, setColorUniversidades] = useState('white')
+
+    const user = localStorage.getItem('user');
+
+    console.log(user);
+
+
+    if (!user) {
+       // return <Navigate to="/" />;
+    }
+
+    const logut: () => void = () => {
+        localStorage.removeItem('user');
+        localStorage.removeItem('token');
+        history('/');
+    }
+
+  
 
   function activarBolaNombre(){
     setColorNombre('#006DD1')
@@ -37,6 +63,8 @@ export const VistaConsulta: FC<Props> = memo(function VistaConsulta(props = {}) 
     setColorNombre('white')
     setColorUniversidades('#006DD1')
   }
+
+
 
   return (
     <div className={`${resets.storybrainResets} ${classes.root}`}>
@@ -98,8 +126,10 @@ export const VistaConsulta: FC<Props> = memo(function VistaConsulta(props = {}) 
       <div className={classes.line3}>
         <Line3Icon className={classes.icon11} />
       </div>
-      <div className={classes.nombreDeUsuarioText}>Nombre de usuario</div>
-      <div className={classes.salirBoton}></div>
+      <div className={classes.nombreDeUsuarioText}>
+
+      </div>
+      <div className={classes.salirBoton} onClick={logut}></div>
       <div className={classes.nombreDeUsuarioImagen}></div>
       <button className={classes.consultarEncargados}>Consultar Encargados</button>
       <button className={classes.anadirEncargados}>
