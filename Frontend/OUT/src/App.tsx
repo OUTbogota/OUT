@@ -1,5 +1,4 @@
 import { memo } from 'react';
-import { useState } from 'react';
 import type { FC } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import classes from './App.module.css';

@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import type { FC } from 'react';
 import { useState } from 'react'
-import {Navigate, useLocation} from 'react-router-dom';
+import { useLocation} from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
 import resets from '../_resets.module.css';
@@ -20,7 +20,6 @@ import { Line7Icon } from './Line7Icon.js';
 import { Line8Icon } from './Line8Icon.js';
 import { Line9Icon } from './Line9Icon.js';
 import classes from './VistaConsulta.module.css';
-import {VistaLogin} from "../VistaLogin/VistaLogin";
 
 interface Props {
   className?: string;
@@ -31,7 +30,6 @@ interface Props {
 /* @figmaId 4:2 */
 export const VistaConsulta: FC<Props> = memo(function VistaConsulta(props = {}) {
 
-    const location = useLocation();
     const history = useNavigate();
 
     const [colorNombre, setColorNombre] = useState('#006DD1')

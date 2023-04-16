@@ -8,7 +8,6 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { useNavigate } from 'react-router-dom';
-import { Navigate } from 'react-router-dom';
 
 import resets from '../_resets.module.css';
 import classes from './VistaLogin.module.css';
