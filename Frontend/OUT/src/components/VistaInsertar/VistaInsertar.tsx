@@ -24,6 +24,7 @@ export const VistaInsertar: FC<Props> = memo(function VistaInsertar(props = {}) 
     <div className={`${resets.storybrainResets} ${classes.root}`}>
       <button className={classes.rectangle10}>LISTO</button>
       <div className={classes.rectangle5}></div>
+      <button className={classes.botonAnadir}>+</button>
       <select className={classes.rectangle9}>
         <option value="UNAL">UNAL</option>
         <option value="CUN" selected>CUN</option>

@@ -20,9 +20,13 @@
   font-family: Fredoka, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
     'Liberation Sans', sans-serif;
   text-align: center;
+  justify-content: center;
   align-items: center;
   white-space: nowrap;
   flex-direction: column;
+}
+.rectangle10:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Sombreado al pasar el mouse */
 }
 .lISTO {
   color: #fff;
@@ -58,10 +62,10 @@
   font-family: Fredoka, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
     'Liberation Sans', sans-serif;
   text-indent: 20px;
+  width: 1079px;
+  height: 70px;
   left: 367px;
   top: 805px;
-  width: 1189px;
-  height: 70px;
   border-radius: 35px;
   background-color: #e4e4e4;
   box-shadow: inset 0px 4px 4px 0px #00000040;
@@ -625,4 +629,29 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+}
+
+/* Botón listo */
+
+.botonAnadir{
+  position: absolute;
+  width: 85px;
+  height: 76px;
+  left: 1471px;
+  top: 802px;
+  border-radius: 50px;
+  background-color: #006dd1;
+  color: #fff;
+  font-size: 60px;
+  font-weight: 600;
+  font-family: Fredoka, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    'Liberation Sans', sans-serif;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap;
+  flex-direction: column;
+}
+.botonAnadir:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Sombreado al pasar el mouse */
 }
