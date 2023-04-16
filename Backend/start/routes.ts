@@ -28,10 +28,7 @@ Route.group(() => {
   Route.get('/index', 'RolesController.index')
 }).prefix('api/Out/v1/roles').middleware('admin')
 
-
-
-
-  Route.post('/api/Out/v1/usuarios/login', 'UsuariosController.loginUsuario')
+Route.post('/api/Out/v1/usuarios/login', 'UsuariosController.loginUsuario')
 
 Route.group(() => {
   Route.get('/index', 'UsuariosController.index')
