@@ -1,5 +1,6 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Encargado from 'App/Models/Encargado'
+import Universidad from 'App/Models/Universidad'
 
 
 export default class EncargadosController {
@@ -18,13 +19,23 @@ export default class EncargadosController {
   public async store({ response, request }: HttpContextContract) {
     try {
       const encargado = request.all()
+      if(encargado.nombre_encargado != "" && encargado.apellido_encargado != "" && encargado.correo_encargado != "" && encargado.cargo_encargado != "" && encargado.id_universidad != ""){
+        const nombre_u = encargado.id_universidad;
+        const uni = await Universidad.findBy("nombre_universidad",nombre_u);
+        if(uni){
+          encargado.id_universidad = uni.id_universidad;
+          encargado.state = true;
+          await Encargado.create(encargado);
+          response.ok({ mensaje: "El encargado se registro correctamente", data: encargado})
+        }
 
-      await Encargado.create(encargado)
-
-      response.ok({ mensaje: "El encargado se registro correctamente", data: encargado})
+      } else {
+        response.status(400).send({mensaje: 'No pueden haber campos vacíos'})
+      }
 
     } catch (e) {
-      response.badRequest({ mensaje: "El encargado ya se encuentra registrado"})
+      console.log(e);
+      response.status(400).send({mensaje: 'El encargado ya se encuentra registrado'})
     }
   }
 
