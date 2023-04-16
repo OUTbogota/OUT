@@ -30,6 +30,15 @@ body {
   white-space: nowrap;
   flex-direction: column;
 }
+.rectangle2 {
+  position: absolute;
+  left: 1510px;
+  top: 0;
+  width: 506.2857px;
+  height: 90px;
+  border-radius: 80px;
+  background-color: #006dd1a1;
+}
 .rectangle12 {
   position: absolute;
   left: 533px;
@@ -317,15 +326,7 @@ body {
 .rEGISTRAR:hover {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Sombreado al pasar el mouse */
 }
-.rectangle2 {
-  position: absolute;
-  left: 1510px;
-  top: 0;
-  width: 506.2857px;
-  height: 90px;
-  border-radius: 80px;
-  background-color: #006dd1a1;
-}
+
 .line3 {
   position: absolute;
   left: 1802.5714px;
@@ -492,7 +493,7 @@ body {
   transform-origin: bottom left;
   position: absolute;
   left: calc(50% - -0.0064px);
-  top: calc(50% - 452px);
+  top: calc(50% - 449px);
   width: 1920.0127px;
   max-width: 100%;
   height: 0;

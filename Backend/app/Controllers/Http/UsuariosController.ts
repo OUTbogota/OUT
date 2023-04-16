@@ -8,20 +8,29 @@ import bcrypt from 'bcrypt'
 export default class UsuariosController {
 
   public async createUsuario({request, response}) {
-    const {nombre, apellido, email, password, rol_id} = request.all()
+    const {nombre, apellido, email, password, confPassword, rol_id} = request.all()
     const salt = await bcrypt.genSalt(10)
     const passwordHash = await bcrypt.hash(password, salt)
     try{
       console.log("ESTA ENTRANDO EN CREAR")
-      await Usuario.create({
-        nombre,
-        apellido,
-        email,
-        password: passwordHash,
-        rol_id,
-        state: true
-      })
-      response.status(201).send({mensaje: 'Usuario creado correctamente'})
+      if(nombre != "" && apellido != "" && email != "" && password != ""){
+        if(password == confPassword){
+          await Usuario.create({
+            nombre,
+            apellido,
+            email,
+            password: passwordHash,
+            rol_id,
+            state: true
+          })
+          response.status(201).send({mensaje: 'Usuario creado correctamente'})
+        }else{
+          response.status(400).send({mensaje: 'Las contraseñas no coinciden'})
+        }
+      }else{
+        console.log("Campos vacíos");
+        response.status(400).send({mensaje: 'No pueden haber campos vacíos'})
+      }
     }catch(error) {
       console.log(error);
       response.status(400).send({mensaje: 'El usuario ya existe'})
