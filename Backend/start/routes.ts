@@ -26,32 +26,36 @@ Route.get('/', async () => {
 
 Route.group(() => {
   Route.get('/index', 'RolesController.index')
-}).prefix('api/Out/v1/roles')
+}).prefix('api/Out/v1/roles').middleware('admin')
+
+
+
+
+  Route.post('/api/Out/v1/usuarios/login', 'UsuariosController.loginUsuario')
 
 Route.group(() => {
   Route.get('/index', 'UsuariosController.index')
   Route.delete('/delete/:id', 'UsuariosController.delete')
-  Route.post('/create', 'UsuariosController.createUsuario')
-  Route.post('/login', 'UsuariosController.loginUsuario')
+  Route.post('/create', 'UsuariosController.createUsuario').middleware('admin')
   Route.get('/prueba', 'EncargadosController.index')
-}).prefix('api/Out/v1/usuarios')
+}).prefix('api/Out/v1/usuarios').middleware('auth')
 
 Route.group(() => {
   Route.post('/store', 'EncargadosController.store')
   Route.get('/index', 'EncargadosController.index')
   Route.get('/show', 'EncargadosController.show')
-}).prefix('api/Out/v1/encargados')
+}).prefix('api/Out/v1/encargados').middleware('auth')
 
 Route.group(() => {
   Route.post('/store', 'CarrerasController.store')
   Route.get('/index', 'CarrerasController.index')
   Route.get('/show', 'CarrerasController.show')
-}).prefix('api/Out/v1/carreras')
+}).prefix('api/Out/v1/carreras').middleware('auth')
 
 Route.group(() => {
   Route.post('/store', 'UniversidadesController.store')
   Route.get('/index', 'UniversidadesController.index')
   Route.get('/show', 'UniversidadesController.show')
-}).prefix('api/Out/v1/universidades')
+}).prefix('api/Out/v1/universidades').middleware('auth')
 
 
