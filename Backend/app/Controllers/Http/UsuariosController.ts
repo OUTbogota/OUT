@@ -104,7 +104,7 @@ export default class UsuariosController {
 
 
   public verifyToken(authorizationHeader: string) {
-    let token = authorizationHeader.split(' ')
+    let token = authorizationHeader.split(' ')[1]
     jwt.verify(token, Env.get('JWT_SECRET_KEY'), (error: any) => {
       if(error) {
         throw new Error('Token inválido')
