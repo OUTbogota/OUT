@@ -28,6 +28,8 @@ export const VistaRegistro: FC<Props> = memo(function VistaRegistro(props = {}) 
   const [password, setPassword] = useState('');
   const [confPassword, setConfPassword] = useState('');
 
+  const [token, setToken] = useState('');
+
   const history = useNavigate();
 
   const handleGoConsulta = async () => {
@@ -58,6 +60,9 @@ export const VistaRegistro: FC<Props> = memo(function VistaRegistro(props = {}) 
     
     
     try {
+      const token = localStorage.getItem('token');
+      console.log(token);
+      
       axios.post('http://127.0.0.1:3333/api/Out/v1/usuarios/create', {
         nombre: nombre,
         apellido: apellido,
@@ -65,6 +70,10 @@ export const VistaRegistro: FC<Props> = memo(function VistaRegistro(props = {}) 
         password: password,
         confPassword: confPassword,
         rol_id: 1,
+      },{
+        headers:{
+          "Authorization":"Bearer " + token
+        }
       })
       .then((response)=>{
         const message = response.data;

@@ -70,7 +70,14 @@ export const VistaInsertar: FC<Props> = memo(function VistaInsertar(props = {}) 
 
   useEffect(() => {
     console.log("Entro universidades");
-    axios.get('http://127.0.0.1:3333/api/Out/v1/universidades/index')
+    const token = localStorage.getItem('token');
+    console.log(token);
+
+    axios.get('http://127.0.0.1:3333/api/Out/v1/universidades/index',{
+        headers:{
+          "Authorization":"Bearer " + token
+        }
+      })
       .then(response => {
         console.log(response.data);
         setOptions(response.data);
@@ -83,9 +90,16 @@ export const VistaInsertar: FC<Props> = memo(function VistaInsertar(props = {}) 
   const handleAnadirUniversidad = async () => {
     console.log(nueva_uni);
 
+    const token = localStorage.getItem('token');
+    console.log(token);
+
     try{
       axios.post('http://127.0.0.1:3333/api/Out/v1/universidades/store',{
         nombre_universidad:nueva_uni,
+      },{
+        headers:{
+          "Authorization":"Bearer " + token
+        }
       })
       .then((response)=>{
         const message = response.data;
