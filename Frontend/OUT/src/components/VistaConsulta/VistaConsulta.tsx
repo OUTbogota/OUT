@@ -3,6 +3,7 @@ import type { FC } from 'react';
 import { useState } from 'react'
 import { useLocation} from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 import resets from '../_resets.module.css';
 import { Ellipse1Icon } from './Ellipse1Icon.js';
@@ -20,15 +21,18 @@ import { Line7Icon } from './Line7Icon.js';
 import { Line8Icon } from './Line8Icon.js';
 import { Line9Icon } from './Line9Icon.js';
 import classes from './VistaConsulta.module.css';
+import Encargado from './EncargadosModel.js';
+
 
 interface Props {
   className?: string;
 }
 
 
-
 /* @figmaId 4:2 */
 export const VistaConsulta: FC<Props> = memo(function VistaConsulta(props = {}) {
+
+    DoRequest()
 
     const history = useNavigate();
 
@@ -50,7 +54,33 @@ export const VistaConsulta: FC<Props> = memo(function VistaConsulta(props = {}) 
         history('/');
     }
 
-  
+  function DoRequest(){
+    const token = localStorage.getItem('token');
+
+    axios.get<Encargado[]>('http://127.0.0.1:3333/api/Out/v1/encargados/index',{
+      headers:{
+        "Authorization":"Bearer " + token
+      }
+    })
+    .then(response => {
+      const encargadosData = response.data;
+      const encargados = encargadosData.map(data => new Encargado(
+        data.id_encargado,
+        data.nombre_encargado,
+        data.apellido_encargado,
+        data.correo_encargado,
+        data.cargo_encargado,
+        data.state,
+        data.id_universidad,
+        data.created_at,
+        data.updated_at
+      ));
+      console.log(encargados);
+    })
+    .catch(error => {
+      console.error(error);
+    });
+  }
 
   function activarBolaNombre(){
     setColorNombre('#006DD1')
@@ -69,8 +99,6 @@ export const VistaConsulta: FC<Props> = memo(function VistaConsulta(props = {}) 
   const handleRegistro = () => {
     history('/registro');
   }
-
-
 
   return (
     <div className={`${resets.storybrainResets} ${classes.root}`}>
