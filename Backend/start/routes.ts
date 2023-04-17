@@ -31,11 +31,16 @@ Route.group(() => {
 Route.post('/api/Out/v1/usuarios/login', 'UsuariosController.loginUsuario')
 
 Route.group(() => {
-  Route.get('/index', 'UsuariosController.index')
-  Route.delete('/delete/:id', 'UsuariosController.delete')
-  Route.post('/create', 'UsuariosController.createUsuario').middleware('admin')
   Route.get('/prueba', 'EncargadosController.index')
 }).prefix('api/Out/v1/usuarios').middleware('auth')
+
+Route.group(() => {
+  Route.delete('/delete/:id', 'UsuariosController.delete')
+  Route.post('/create', 'UsuariosController.createUsuario')
+  Route.get('/index', 'UsuariosController.index')
+}).prefix('api/Out/v1/usuarios').middleware('admin')
+
+
 
 Route.group(() => {
   Route.post('/store', 'EncargadosController.store')

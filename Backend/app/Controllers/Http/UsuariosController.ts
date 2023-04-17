@@ -121,7 +121,7 @@ export default class UsuariosController {
   }
 
   public obtenerPayload(authorizationHeader: string) {
-    let token = authorizationHeader.split(' ')
+    let token = authorizationHeader.split(' ')[1]
     const payload = jwt.verify(token, Env.get('JWT_SECRET_KEY'), {complete: true}).payload
     return payload
   }

@@ -12,9 +12,10 @@ export default class Admin {
     const token = authorizationHeader
     try{
       const user = new UsuariosController()
-      const id = user.obtenerPayload(token)
+      const {id} = await user.obtenerPayload(token)
       const usuario = await Usuario.find(id)
-
+      console.log(id);
+      
       if(!usuario) {
         return ctx.response.status(401).send('token inválido')
       }
@@ -23,6 +24,8 @@ export default class Admin {
       }
       await next()
     }catch(error) {
+      console.log("hello world")
+      console.log(error);
       ctx.response.status(401).send('Token inválido')
     }
 
