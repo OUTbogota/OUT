@@ -39,14 +39,15 @@ export const VistaConsulta: FC<Props> = memo(function VistaConsulta(props = {}) 
     const [colorNombre, setColorNombre] = useState('#006DD1')
     const [colorUniversidades, setColorUniversidades] = useState('white')
 
-    const user = localStorage.getItem('user');
+    let user = JSON.parse(localStorage.getItem('user') || '{}');
 
-    console.log(user);
-
+    console.log(user?.rol);
+    
 
     if (!user) {
        // return <Navigate to="/" />;
     }
+    
 
     const logut: () => void = () => {
         localStorage.removeItem('user');
@@ -161,7 +162,7 @@ export const VistaConsulta: FC<Props> = memo(function VistaConsulta(props = {}) 
         <Line3Icon className={classes.icon11} />
       </div>
       <div className={classes.nombreDeUsuarioText}>
-
+        {user?.nombre}
       </div>
       <div className={classes.salirBoton} onClick={logut}></div>
       <div className={classes.nombreDeUsuarioImagen}></div>

@@ -56,7 +56,7 @@ export const VistaLogin: FC<Props> = memo(function VistaLogin(props = {}) {
 
         setToken(token); // Guarda el token en el estado del componente
         localStorage.setItem('token', token); // Guarda el token en el localStorage
-        localStorage.setItem('user', user); // Guarda el usuario en el localStorage
+        localStorage.setItem('user', JSON.stringify(user) ); // Guarda el usuario en el localStorage
       
         history('/consulta', { state: { user}});
 
