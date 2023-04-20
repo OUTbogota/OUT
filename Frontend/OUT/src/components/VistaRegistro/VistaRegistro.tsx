@@ -32,6 +32,8 @@ export const VistaRegistro: FC<Props> = memo(function VistaRegistro(props = {}) 
 
   const history = useNavigate();
 
+  let user = JSON.parse(localStorage.getItem('user') || '{}');
+
   const handleGoConsulta = async () => {
     history('/consulta');
   }
@@ -69,7 +71,7 @@ export const VistaRegistro: FC<Props> = memo(function VistaRegistro(props = {}) 
         email: email,
         password: password,
         confPassword: confPassword,
-        rol_id: 1,
+        rol_id: 2,
       },{
         headers:{
           "Authorization":"Bearer " + token
@@ -187,7 +189,9 @@ export const VistaRegistro: FC<Props> = memo(function VistaRegistro(props = {}) 
       <div className={classes.line2}></div>
       <div className={classes.rectangle1}></div>
       <div className={classes.rectangle2}></div>
-      <div className={classes.nombreDeUsuario}>Nombre de usuario</div>
+      <div className={classes.nombreDeUsuario}>
+        {user?.nombre}
+      </div>
       <div>
         <button className={classes.image1}onClick={handleGoLogin}></button>
       </div>

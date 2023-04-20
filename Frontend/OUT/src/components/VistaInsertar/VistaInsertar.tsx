@@ -43,6 +43,10 @@ export const VistaInsertar: FC<Props> = memo(function VistaInsertar(props = {}) 
   const [showModal, setShowModal] = useState(false);
   const [nueva_uni, setNuevaUniversidad] = useState('');
   
+  let user = JSON.parse(localStorage.getItem('user') || '{}');
+
+  const token = localStorage.getItem('token');
+    console.log(token);
 
   const toggleModal = () => {
     setShowModal(!showModal);
@@ -70,8 +74,7 @@ export const VistaInsertar: FC<Props> = memo(function VistaInsertar(props = {}) 
 
   useEffect(() => {
     console.log("Entro universidades");
-    const token = localStorage.getItem('token');
-    console.log(token);
+    
 
     axios.get('http://127.0.0.1:3333/api/Out/v1/universidades/index',{
         headers:{
@@ -145,6 +148,10 @@ export const VistaInsertar: FC<Props> = memo(function VistaInsertar(props = {}) 
       correo_encargado:correo,
       cargo_encargado:cargo,
       id_universidad:universidad,
+      },{
+        headers:{
+          "Authorization":"Bearer " + token
+        }
       })
       .then((response)=>{
         const message = response.data;
@@ -267,6 +274,7 @@ export const VistaInsertar: FC<Props> = memo(function VistaInsertar(props = {}) 
         <div className={classes.registrarUsuariosText}>Registrar</div>
         <div className={classes.registrarUsuariosText}>Usuarios</div>
       </button>
+      <div className={classes.nombreDeUsuarioFondo}></div>
       <div className={classes.line1}>
         <Line1Icon className={classes.icon2} />
       </div>
@@ -278,11 +286,13 @@ export const VistaInsertar: FC<Props> = memo(function VistaInsertar(props = {}) 
       </div>
       <div className={classes.line2}></div>
       <div className={`${classes.rectangle2} ${classes.button}`}></div>
-      <div className={classes.nombreDeUsuarioFondo}></div>
+      
       {/* <div className={classes.line3}>
         <Line3Icon className={classes.icon11} />
       </div> */}
-      <div className={classes.nombreDeUsuarioText}>Nombre de usuario</div>
+      <div className={classes.nombreDeUsuarioText}>
+        {user?.nombre}
+      </div>
       <button className={classes.salirBoton} onClick={handleGoLogin}></button>
       <div className={classes.nombreDeUsuarioImagen}></div>
 
