@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import type { FC } from 'react';
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useLocation} from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -32,7 +32,8 @@ interface Props {
 /* @figmaId 4:2 */
 export const VistaConsulta: FC<Props> = memo(function VistaConsulta(props = {}) {
 
-    DoRequest()
+    //DoRequest()
+    //DoTable();
 
     const history = useNavigate();
 
@@ -54,6 +55,49 @@ export const VistaConsulta: FC<Props> = memo(function VistaConsulta(props = {}) 
         localStorage.removeItem('token');
         history('/');
     }
+
+    useEffect(() => {
+    const token = localStorage.getItem('token');
+    type Dato = { id_encargado: number, nombre_encargado: string, apellido_encargado: string, correo_encargado: string, cargo_encargado: string };
+    // Obtener la referencia de la tabla y el cuerpo de la tabla
+    const tableBody = document.getElementById("tableBody") as HTMLTableSectionElement;
+
+    // Realizar una solicitud fetch a la ruta de backend
+    fetch("http://127.0.0.1:3333/api/Out/v1/encargados/index",{
+      headers:{
+        "Authorization":"Bearer " + token
+      }
+    })
+    .then(response => response.json()) // Parsear la respuesta a JSON
+    .then(datos => {
+      // Generar el contenido de la tabla dinámicamente con los datos obtenidos
+      console.log("ENTRANDO A OBTENER DATOS");
+      console.log(datos);
+      var numFilas = tableBody.rows.length;
+
+      // Recorre las filas en reversa y elimínalas una por una
+      for (var i = numFilas - 1; i >= 0; i--) {
+        tableBody.deleteRow(i);
+      }
+      datos.forEach((dato: Dato) => { // Asumimos que el tipo Dato está definido
+        // Crear una nueva fila en el cuerpo de la tabla
+        console.log(dato);
+        const row = tableBody.insertRow();
+
+        // Crear celdas en la fila y establecer el contenido
+        const cellNombre = row.insertCell();
+        const cellApellido = row.insertCell();
+        const cellCorreo = row.insertCell();
+        const cellCargo = row.insertCell();
+
+        cellNombre.textContent = dato.nombre_encargado;
+        cellApellido.textContent = dato.apellido_encargado;
+        cellCorreo.textContent = dato.correo_encargado;
+        cellCargo.textContent = dato.cargo_encargado;
+      });
+    })
+    .catch(error => console.error("Error al obtener datos:", error));
+  });
 
   function DoRequest(){
     const token = localStorage.getItem('token');
@@ -187,6 +231,9 @@ export const VistaConsulta: FC<Props> = memo(function VistaConsulta(props = {}) 
       <div className={classes.line2}></div>
       <div className={classes.outFondo}></div>
       <div className={classes.outText}>OUT</div>
+      <table>
+        <tbody id="tableBody" className={classes.tableBody}></tbody>
+      </table>
     </div>
   );
 });
