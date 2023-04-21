@@ -41,11 +41,10 @@ Route.group(() => {
 }).prefix('api/Out/v1/usuarios').middleware('admin')
 
 
-
 Route.group(() => {
   Route.post('/store', 'EncargadosController.store')
   Route.get('/index', 'EncargadosController.index')
-  Route.get('/show', 'EncargadosController.show')
+  Route.get('/showNombre/:nombre', 'EncargadosController.showUni')
 }).prefix('api/Out/v1/encargados').middleware('auth')
 
 Route.group(() => {

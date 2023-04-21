@@ -40,6 +40,11 @@ export const VistaConsulta: FC<Props> = memo(function VistaConsulta(props = {}) 
     const [colorNombre, setColorNombre] = useState('#006DD1')
     const [colorUniversidades, setColorUniversidades] = useState('white')
 
+    const [valor_busqueda,setBusqueda] = useState('');
+
+    const [marked_busqueda, setMarked_Busqueda] = useState(0);
+
+
     let user = JSON.parse(localStorage.getItem('user') || '{}');
 
     console.log(user?.rol);
@@ -57,55 +62,120 @@ export const VistaConsulta: FC<Props> = memo(function VistaConsulta(props = {}) 
     }
 
     useEffect(() => {
-    const token = localStorage.getItem('token');
-    type Dato = { id_encargado: number, nombre_encargado: string, apellido_encargado: string, correo_encargado: string, cargo_encargado: string };
-    // Obtener la referencia de la tabla y el cuerpo de la tabla
-    const tableBody = document.getElementById("tableBody") as HTMLTableSectionElement;
+      const token = localStorage.getItem('token');
+      type Dato = { id_encargado: number, nombre_encargado: string, apellido_encargado: string, correo_encargado: string, cargo_encargado: string, nombre_universidad: string};
+      // Obtener la referencia de la tabla y el cuerpo de la tabla
+      const tableBody = document.getElementById("tableBody") as HTMLTableSectionElement;
 
-    // Realizar una solicitud fetch a la ruta de backend
-    fetch("http://127.0.0.1:3333/api/Out/v1/encargados/index",{
-      headers:{
-        "Authorization":"Bearer " + token
+      console.log(marked_busqueda)
+      if(marked_busqueda == 0){
+
+        // Realizar una solicitud fetch a la ruta de backend
+        fetch("http://127.0.0.1:3333/api/Out/v1/encargados/index",{
+          headers:{
+            "Authorization":"Bearer " + token
+          }
+        })
+        .then(response => response.json()) // Parsear la respuesta a JSON
+        .then(datos => {
+          // Generar el contenido de la tabla dinámicamente con los datos obtenidos
+          console.log("ENTRANDO A OBTENER DATOS");
+          console.log(datos);
+          var numFilas = tableBody.rows.length;
+
+          // Recorre las filas en reversa y elimínalas una por una
+          for (var i = numFilas - 1; i >= 0; i--) {
+            tableBody.deleteRow(i);
+          }
+          datos.forEach((dato: Dato) => { // Asumimos que el tipo Dato está definido
+            // Crear una nueva fila en el cuerpo de la tabla
+            console.log(dato);
+            const row = tableBody.insertRow();
+
+            // Crear celdas en la fila y establecer el contenido
+            const cellNombre = row.insertCell();
+            const cellApellido = row.insertCell();
+            const cellCorreo = row.insertCell();
+            const cellCargo = row.insertCell();
+            const cellUniversidad = row.insertCell();
+
+            cellNombre.textContent = dato.nombre_encargado;
+            cellApellido.textContent = dato.apellido_encargado;
+            cellCorreo.textContent = dato.correo_encargado;
+            cellCargo.textContent = dato.cargo_encargado;
+            cellUniversidad.textContent = dato.nombre_universidad;
+            
+          });
+        })
+        .catch(error => console.error("Error al obtener datos:", error));
+      }else if(marked_busqueda == 1){
+
+      }else if(marked_busqueda == 2){
+        fetch('http://127.0.0.1:3333/api/Out/v1/encargados/showNombre/' + valor_busqueda,{
+          headers:{
+            "Authorization":"Bearer " + token
+          }
+        })
+        .then(response => response.json()) // Parsear la respuesta a JSON
+        .then(datos => {
+          // Generar el contenido de la tabla dinámicamente con los datos obtenidos
+          console.log("ENTRANDO A OBTENER DATOS");
+          console.log(datos);
+          var numFilas = tableBody.rows.length;
+
+          // Recorre las filas en reversa y elimínalas una por una
+          for (var i = numFilas - 1; i >= 0; i--) {
+            tableBody.deleteRow(i);
+          }
+          datos.forEach((dato: Dato) => { // Asumimos que el tipo Dato está definido
+            // Crear una nueva fila en el cuerpo de la tabla
+            console.log(dato);
+            const row = tableBody.insertRow();
+
+            // Crear celdas en la fila y establecer el contenido
+            const cellNombre = row.insertCell();
+            const cellApellido = row.insertCell();
+            const cellCorreo = row.insertCell();
+            const cellCargo = row.insertCell();
+            const cellUniversidad = row.insertCell();
+
+            cellNombre.textContent = dato.nombre_encargado;
+            cellApellido.textContent = dato.apellido_encargado;
+            cellCorreo.textContent = dato.correo_encargado;
+            cellCargo.textContent = dato.cargo_encargado;
+            cellUniversidad.textContent = dato.nombre_universidad;
+            
+          });
+        })
+        .catch(error => console.error("Error al obtener datos:", error));
       }
-    })
-    .then(response => response.json()) // Parsear la respuesta a JSON
-    .then(datos => {
-      // Generar el contenido de la tabla dinámicamente con los datos obtenidos
-      console.log("ENTRANDO A OBTENER DATOS");
-      console.log(datos);
-      var numFilas = tableBody.rows.length;
-
-      // Recorre las filas en reversa y elimínalas una por una
-      for (var i = numFilas - 1; i >= 0; i--) {
-        tableBody.deleteRow(i);
-      }
-      datos.forEach((dato: Dato) => { // Asumimos que el tipo Dato está definido
-        // Crear una nueva fila en el cuerpo de la tabla
-        console.log(dato);
-        const row = tableBody.insertRow();
-
-        // Crear celdas en la fila y establecer el contenido
-        const cellNombre = row.insertCell();
-        const cellApellido = row.insertCell();
-        const cellCorreo = row.insertCell();
-        const cellCargo = row.insertCell();
-
-        cellNombre.textContent = dato.nombre_encargado;
-        cellApellido.textContent = dato.apellido_encargado;
-        cellCorreo.textContent = dato.correo_encargado;
-        cellCargo.textContent = dato.cargo_encargado;
-      });
-    })
-    .catch(error => console.error("Error al obtener datos:", error));
   });
 
-  function DoRequest(){
+  function search(){
+    console.log("search")
+    const token = localStorage.getItem('token');
+    const nombre= "Kenneth Sebastian"
+      
+    fetch('http://127.0.0.1:3333/api/Out/v1/encargados/showNombre/' + valor_busqueda,{
+        headers:{
+          "Authorization":"Bearer " + token
+        }
+      })
+      .then(response => {
+        console.log(response)
+      })
+      .catch(error =>{
+        console.error();
+      });
+  }
+
+  /*function DoRequest(){
     const token = localStorage.getItem('token');
 
     axios.get<Encargado[]>('http://127.0.0.1:3333/api/Out/v1/encargados/index',{
       headers:{
         "Authorization":"Bearer " + token
-      }
+      }, params:{}
     })
     .then(response => {
       const encargadosData = response.data;
@@ -125,16 +195,18 @@ export const VistaConsulta: FC<Props> = memo(function VistaConsulta(props = {}) 
     .catch(error => {
       console.error(error);
     });
-  }
+  }*/
 
   function activarBolaNombre(){
     setColorNombre('#006DD1')
     setColorUniversidades('white')
+    setMarked_Busqueda(1)
   }
 
   function activarBolaUniversidades(){
     setColorNombre('white')
     setColorUniversidades('#006DD1')
+    setMarked_Busqueda(2)
   }
 
   const handleInsertar = () => {
@@ -170,10 +242,10 @@ export const VistaConsulta: FC<Props> = memo(function VistaConsulta(props = {}) 
       <div className={classes.line6}>
         <Line6Icon className={classes.icon6} />
       </div>
-      <input className={classes.inputBusqueda} type="text" placeholder="Buscar" />
+      <input className={classes.inputBusqueda} type="text" placeholder="Buscar" onChange={(e) => {setBusqueda(e.target.value)}} />
       <div className={classes.buscarBoton}></div>
       {/* boton de buscar */}
-      <div className={classes.buscarBoton}>
+      <div className={classes.buscarBoton} onClick={search}>
         <div className={classes.buscarBotonFondo}></div>
         <div className={classes.buscarBotonImagen}></div>
       </div>
