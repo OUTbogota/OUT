@@ -63,7 +63,7 @@ export const VistaConsulta: FC<Props> = memo(function VistaConsulta(props = {}) 
 
     useEffect(() => {
       const token = localStorage.getItem('token');
-      type Dato = { id_encargado: number, nombre_encargado: string, apellido_encargado: string, correo_encargado: string, cargo_encargado: string, nombre_universidad: string};
+      type Dato = { id_encargado: number, nombre_apellido_encargado: string, correo_encargado: string, cargo_encargado: string, nombre_universidad: string};
       // Obtener la referencia de la tabla y el cuerpo de la tabla
       const tableBody = document.getElementById("tableBody") as HTMLTableSectionElement;
 
@@ -94,13 +94,11 @@ export const VistaConsulta: FC<Props> = memo(function VistaConsulta(props = {}) 
 
             // Crear celdas en la fila y establecer el contenido
             const cellNombre = row.insertCell();
-            const cellApellido = row.insertCell();
             const cellCorreo = row.insertCell();
             const cellCargo = row.insertCell();
             const cellUniversidad = row.insertCell();
 
-            cellNombre.textContent = dato.nombre_encargado;
-            cellApellido.textContent = dato.apellido_encargado;
+            cellNombre.textContent = dato.nombre_apellido_encargado;
             cellCorreo.textContent = dato.correo_encargado;
             cellCargo.textContent = dato.cargo_encargado;
             cellUniversidad.textContent = dato.nombre_universidad;
@@ -133,13 +131,11 @@ export const VistaConsulta: FC<Props> = memo(function VistaConsulta(props = {}) 
 
             // Crear celdas en la fila y establecer el contenido
             const cellNombre = row.insertCell();
-            const cellApellido = row.insertCell();
             const cellCorreo = row.insertCell();
             const cellCargo = row.insertCell();
             const cellUniversidad = row.insertCell();
 
-            cellNombre.textContent = dato.nombre_encargado;
-            cellApellido.textContent = dato.apellido_encargado;
+            cellNombre.textContent = dato.nombre_apellido_encargado;
             cellCorreo.textContent = dato.correo_encargado;
             cellCargo.textContent = dato.cargo_encargado;
             cellUniversidad.textContent = dato.nombre_universidad;
@@ -172,13 +168,11 @@ export const VistaConsulta: FC<Props> = memo(function VistaConsulta(props = {}) 
 
             // Crear celdas en la fila y establecer el contenido
             const cellNombre = row.insertCell();
-            const cellApellido = row.insertCell();
             const cellCorreo = row.insertCell();
             const cellCargo = row.insertCell();
             const cellUniversidad = row.insertCell();
 
-            cellNombre.textContent = dato.nombre_encargado;
-            cellApellido.textContent = dato.apellido_encargado;
+            cellNombre.textContent = dato.nombre_apellido_encargado;
             cellCorreo.textContent = dato.correo_encargado;
             cellCargo.textContent = dato.cargo_encargado;
             cellUniversidad.textContent = dato.nombre_universidad;

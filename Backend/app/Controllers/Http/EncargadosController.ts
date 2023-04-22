@@ -9,7 +9,7 @@ export default class EncargadosController {
     try {
       const datos = await Database.query().from('universidades')
       .leftJoin('encargados', 'universidades.id_universidad', '=', 'encargados.id_universidad')
-      .select('encargados.id_encargado','encargados.nombre_encargado','encargados.apellido_encargado','encargados.correo_encargado','encargados.cargo_encargado','universidades.nombre_universidad')
+      .select('encargados.id_encargado','encargados.nombre_apellido_encargado','encargados.correo_encargado','encargados.cargo_encargado','universidades.nombre_universidad')
       console.log(datos)
       console.log("hola")
       response.ok(datos)
@@ -23,7 +23,7 @@ export default class EncargadosController {
   public async store({ response, request }: HttpContextContract) {
     try {
       const encargado = request.all()
-      if(encargado.nombre_encargado != "" && encargado.apellido_encargado != "" && encargado.correo_encargado != "" && encargado.cargo_encargado != "" && encargado.id_universidad != ""){
+      if(encargado.nombre_apellido_encargado != "" && encargado.correo_encargado != "" && encargado.cargo_encargado != "" && encargado.id_universidad != ""){
         const nombre_u = encargado.id_universidad;
         const uni = await Universidad.findBy("nombre_universidad",nombre_u);
         if(uni){
@@ -51,8 +51,8 @@ export default class EncargadosController {
       console.log(nombre_encargado);
       const datos = await Database.query().from('universidades')
           .leftJoin('encargados', 'universidades.id_universidad', '=', 'encargados.id_universidad')
-          .select('encargados.id_encargado','encargados.nombre_encargado','encargados.apellido_encargado','encargados.correo_encargado','encargados.cargo_encargado','universidades.nombre_universidad')
-          .where('encargados.nombre_encargado','=',nombre_encargado)
+          .select('encargados.id_encargado','encargados.nombre_apellido_encargado','encargados.correo_encargado','encargados.cargo_encargado','universidades.nombre_universidad')
+          .where('encargados.nombre_apellido_encargado','LIKE','%$'+nombre_encargado+'%')
         if(datos){
           response.ok({ mensaje: "Se encontro encargado con ese nombre", data: datos})
         } else {
@@ -75,7 +75,7 @@ export default class EncargadosController {
       if(uni){
         const datos = await Database.query().from('universidades')
           .leftJoin('encargados', 'universidades.id_universidad', '=', 'encargados.id_universidad')
-          .select('encargados.id_encargado','encargados.nombre_encargado','encargados.apellido_encargado','encargados.correo_encargado','encargados.cargo_encargado','universidades.nombre_universidad')
+          .select('encargados.id_encargado','encargados.nombre_apellido_encargado','encargados.correo_encargado','encargados.cargo_encargado','universidades.nombre_universidad')
           .where('universidades.nombre_universidad','=',nombre_universidad)
         if(datos){
           response.ok({ mensaje: "Se encontro", data: datos})
@@ -91,11 +91,6 @@ export default class EncargadosController {
     catch(e){
       response.badRequest({ mensaje: "Error en el servidor"})
     }
-  }
-
-
-  public async getByName({response}: HttpContextContract) {
-
   }
 
   //public async edit({}: HttpContextContract) {}
