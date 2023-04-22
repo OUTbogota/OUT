@@ -42,8 +42,8 @@ export const VistaConsulta: FC<Props> = memo(function VistaConsulta(props = {}) 
 
     const [valor_busqueda,setBusqueda] = useState('');
 
-    const [marked_busqueda, setMarked_Busqueda] = useState(0);
-
+    const [marked_busqueda, setMarked_Busqueda] = useState(1);
+    const [marked_busqueda_anterior, setMarked_Busqueda_Anterior] = useState(1);
 
     let user = JSON.parse(localStorage.getItem('user') || '{}');
 
@@ -66,6 +66,18 @@ export const VistaConsulta: FC<Props> = memo(function VistaConsulta(props = {}) 
       type Dato = { id_encargado: number, nombre_apellido_encargado: string, correo_encargado: string, cargo_encargado: string, nombre_universidad: string};
       // Obtener la referencia de la tabla y el cuerpo de la tabla
       const tableBody = document.getElementById("tableBody") as HTMLTableSectionElement;
+
+
+      if(valor_busqueda == ""){
+        if(marked_busqueda != 0){
+          setMarked_Busqueda_Anterior(marked_busqueda)
+        }
+        setMarked_Busqueda(0)
+      }else{
+        setMarked_Busqueda(marked_busqueda_anterior)
+      }
+
+
 
       console.log(marked_busqueda)
       if(marked_busqueda == 0){
