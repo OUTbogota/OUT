@@ -107,16 +107,21 @@ export const VistaInsertar: FC<Props> = memo(function VistaInsertar(props = {}) 
       .then((response)=>{
         const message = response.data;
         console.log(message.msg);
-        axios.get('http://127.0.0.1:3333/api/Out/v1/universidades/index')
+        axios.get('http://127.0.0.1:3333/api/Out/v1/universidades/index',{
+            headers:{
+            "Authorization":"Bearer " + token
+            }
+          })
           .then(response => {
+            console.log("si actualiza las opciones")
             console.log(response.data);
             setOptions(response.data);
+            toggleModal();
           })
           .catch(error => {
             console.error(error);
           });
         toast.success(message.msg);
-
         
       })
       .catch((error)=>{
