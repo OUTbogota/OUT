@@ -22,15 +22,19 @@ export default class EncargadosController {
 
   public async store({ response, request }: HttpContextContract) {
     try {
-      const encargado = request.all()
-      if(encargado.nombre_apellido_encargado != "" && encargado.correo_encargado != "" && encargado.cargo_encargado != "" && encargado.id_universidad != ""){
-        const nombre_u = encargado.id_universidad;
+      const {nombre_encargado,apellido_encargado,correo_encargado,cargo_encargado,id_universidad} = request.all()
+      if(nombre_encargado != "" && apellido_encargado != "" && correo_encargado != "" && cargo_encargado != "" && id_universidad != ""){
+        const nombre_u = id_universidad;
         const uni = await Universidad.findBy("nombre_universidad",nombre_u);
         if(uni){
-          encargado.id_universidad = uni.id_universidad;
-          encargado.state = true;
-          await Encargado.create(encargado);
-          response.ok({ mensaje: "El encargado se registro correctamente", data: encargado})
+          await Encargado.create({
+            nombre_apellido_encargado:(nombre_encargado + ' ' + apellido_encargado).toUpperCase(),
+            correo_encargado,
+            cargo_encargado:cargo_encargado.toUpperCase(),
+            id_universidad:uni.id_universidad,
+            state:true,
+          });
+          response.ok({ mensaje: "El encargado se registro correctamente"})
         }
 
       } else {
@@ -47,12 +51,12 @@ export default class EncargadosController {
     try{
       console.log("show")
       console.log(params)
-      const nombre_encargado = decodeURIComponent(params.nombre)
+      const nombre_encargado = decodeURIComponent(params.nombre).toUpperCase();
       console.log(nombre_encargado);
       const datos = await Database.query().from('universidades')
           .leftJoin('encargados', 'universidades.id_universidad', '=', 'encargados.id_universidad')
           .select('encargados.id_encargado','encargados.nombre_apellido_encargado','encargados.correo_encargado','encargados.cargo_encargado','universidades.nombre_universidad')
-          .where('encargados.nombre_apellido_encargado','LIKE','%$'+nombre_encargado+'%')
+          .where('encargados.nombre_apellido_encargado','LIKE',`%${nombre_encargado}%`)
         if(datos){
           response.ok({ mensaje: "Se encontro encargado con ese nombre", data: datos})
         } else {
@@ -68,15 +72,19 @@ export default class EncargadosController {
     try{
       console.log("show");
       console.log(params);
-      const nombre_universidad = decodeURIComponent(params.nombre);
+      const nombre_universidad = decodeURIComponent(params.nombre).toUpperCase();
       
       console.log(nombre_universidad);
-      const uni = await Universidad.findBy("nombre_universidad",nombre_universidad);
+      /*const uni = await Universidad.findBy("nombre_universidad",nombre_universidad);*/
+
+      const uni = await Universidad.query()
+      .where('nombre_universidad', 'LIKE', `%${nombre_universidad}%`);
+
       if(uni){
         const datos = await Database.query().from('universidades')
           .leftJoin('encargados', 'universidades.id_universidad', '=', 'encargados.id_universidad')
           .select('encargados.id_encargado','encargados.nombre_apellido_encargado','encargados.correo_encargado','encargados.cargo_encargado','universidades.nombre_universidad')
-          .where('universidades.nombre_universidad','=',nombre_universidad)
+          .where('universidades.nombre_universidad', 'LIKE', `%${nombre_universidad}%`)
         if(datos){
           response.ok({ mensaje: "Se encontro", data: datos})
         } else {
