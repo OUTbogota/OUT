@@ -43,7 +43,6 @@ export const VistaConsulta: FC<Props> = memo(function VistaConsulta(props = {}) 
     const [valor_busqueda,setBusqueda] = useState('');
 
     const [marked_busqueda, setMarked_Busqueda] = useState(1);
-    const [marked_busqueda_anterior, setMarked_Busqueda_Anterior] = useState(1);
 
     let user = JSON.parse(localStorage.getItem('user') || '{}');
 
@@ -68,19 +67,9 @@ export const VistaConsulta: FC<Props> = memo(function VistaConsulta(props = {}) 
       const tableBody = document.getElementById("tableBody") as HTMLTableSectionElement;
 
 
-      if(valor_busqueda == ""){
-        if(marked_busqueda != 0){
-          setMarked_Busqueda_Anterior(marked_busqueda)
-        }
-        setMarked_Busqueda(0)
-      }else{
-        setMarked_Busqueda(marked_busqueda_anterior)
-      }
-
-
 
       console.log(marked_busqueda)
-      if(marked_busqueda == 0){
+      if(valor_busqueda == ""){
 
         // Realizar una solicitud fetch a la ruta de backend
         fetch("http://127.0.0.1:3333/api/Out/v1/encargados/index",{
