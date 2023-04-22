@@ -6,10 +6,10 @@ export default class Encargado extends BaseModel {
   public id_encargado: number
 
   @column()
-  public nombre_encargado: string
+  public nombre_apellido_encargado: string
 
-  @column()
-  public apellido_encargado: string
+  /*@column()
+  public apellido_encargado: string*/
 
   @column()
   public correo_encargado: string
