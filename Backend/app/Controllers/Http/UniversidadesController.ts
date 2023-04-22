@@ -19,6 +19,7 @@ export default class UniversidadesController {
       const universidad = request.all()
       if(universidad.nombre_universidad != ""){
         universidad.state = true;
+        universidad.nombre_universidad = universidad.nombre_universidad.toUpperCase()
         await Universidad.create(universidad);
         response.ok({msg:'El registro se creó correctamente', data: universidad})
       } else {
