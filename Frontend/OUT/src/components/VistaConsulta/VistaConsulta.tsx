@@ -110,8 +110,46 @@ export const VistaConsulta: FC<Props> = memo(function VistaConsulta(props = {}) 
         .catch(error => console.error("Error al obtener datos:", error));
       }else if(marked_busqueda == 1){
 
-      }else if(marked_busqueda == 2){
         fetch('http://127.0.0.1:3333/api/Out/v1/encargados/showNombre/' + valor_busqueda,{
+          headers:{
+            "Authorization":"Bearer " + token
+          }
+        })
+        .then(response => response.json()) // Parsear la respuesta a JSON
+        .then(datos => {
+          // Generar el contenido de la tabla dinámicamente con los datos obtenidos
+          console.log("ENTRANDO A OBTENER DATOS");
+          console.log(datos.data);
+          var numFilas = tableBody.rows.length;
+
+          // Recorre las filas en reversa y elimínalas una por una
+          for (var i = numFilas - 1; i >= 0; i--) {
+            tableBody.deleteRow(i);
+          }
+          datos.data.forEach((dato: Dato) => { // Asumimos que el tipo Dato está definido
+            // Crear una nueva fila en el cuerpo de la tabla
+            console.log(dato);
+            const row = tableBody.insertRow();
+
+            // Crear celdas en la fila y establecer el contenido
+            const cellNombre = row.insertCell();
+            const cellApellido = row.insertCell();
+            const cellCorreo = row.insertCell();
+            const cellCargo = row.insertCell();
+            const cellUniversidad = row.insertCell();
+
+            cellNombre.textContent = dato.nombre_encargado;
+            cellApellido.textContent = dato.apellido_encargado;
+            cellCorreo.textContent = dato.correo_encargado;
+            cellCargo.textContent = dato.cargo_encargado;
+            cellUniversidad.textContent = dato.nombre_universidad;
+            
+          });
+        })
+        .catch(error => console.error("Error al obtener datos:", error));
+
+      }else if(marked_busqueda == 2){
+        fetch('http://127.0.0.1:3333/api/Out/v1/encargados/showUni/' + valor_busqueda,{
           headers:{
             "Authorization":"Bearer " + token
           }
@@ -127,7 +165,7 @@ export const VistaConsulta: FC<Props> = memo(function VistaConsulta(props = {}) 
           for (var i = numFilas - 1; i >= 0; i--) {
             tableBody.deleteRow(i);
           }
-          datos.forEach((dato: Dato) => { // Asumimos que el tipo Dato está definido
+          datos.data.forEach((dato: Dato) => { // Asumimos que el tipo Dato está definido
             // Crear una nueva fila en el cuerpo de la tabla
             console.log(dato);
             const row = tableBody.insertRow();

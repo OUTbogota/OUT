@@ -44,7 +44,8 @@ Route.group(() => {
 Route.group(() => {
   Route.post('/store', 'EncargadosController.store')
   Route.get('/index', 'EncargadosController.index')
-  Route.get('/showNombre/:nombre', 'EncargadosController.showUni')
+  Route.get('/showNombre/:nombre','EncargadosController.showNombre')
+  Route.get('/showUni/:nombre', 'EncargadosController.showUni')
 }).prefix('api/Out/v1/encargados').middleware('auth')
 
 Route.group(() => {

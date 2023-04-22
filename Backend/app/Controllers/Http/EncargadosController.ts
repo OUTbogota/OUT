@@ -43,17 +43,21 @@ export default class EncargadosController {
     }
   }
 
-  public async showNombre({response, request, params}: HttpContextContract) {
+  public async showNombre({response, params}: HttpContextContract) {
     try{
       console.log("show")
       console.log(params)
       const nombre_encargado = decodeURIComponent(params.nombre)
-      const encargado = await Encargado.findBy("nombre_encargado", nombre_encargado)
-      if(encargado){
-        response.ok({ mensaje: "Se encontro", data: encargado})
-      }else{
-        response.badRequest({ mensaje: "No se encontro encargado con ese nombre"})
-      }
+      console.log(nombre_encargado);
+      const datos = await Database.query().from('universidades')
+          .leftJoin('encargados', 'universidades.id_universidad', '=', 'encargados.id_universidad')
+          .select('encargados.id_encargado','encargados.nombre_encargado','encargados.apellido_encargado','encargados.correo_encargado','encargados.cargo_encargado','universidades.nombre_universidad')
+          .where('encargados.nombre_encargado','=',nombre_encargado)
+        if(datos){
+          response.ok({ mensaje: "Se encontro encargado con ese nombre", data: datos})
+        } else {
+          response.ok({ mensaje: "No se encontro encargado con ese nombre"})
+        }
     }
     catch(e){
       response.badRequest({ mensaje: "No se encontro encargado con ese nombre"})
