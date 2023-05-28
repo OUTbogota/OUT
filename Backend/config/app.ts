@@ -25,7 +25,7 @@ import type { ValidatorConfig } from '@ioc:Adonis/Core/Validator'
 | be decrypted.
 |
 */
-export const appKey: string = Env.get('APP_KEY')
+export const appKey: string = 'H4hmafTl3R9L9yjc-_fLqtKx2peCKR93'
 
 /*
 |--------------------------------------------------------------------------
