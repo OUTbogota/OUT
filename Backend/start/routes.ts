@@ -32,7 +32,7 @@ Route.post('/api/Out/v1/usuarios/login', 'UsuariosController.loginUsuario')
 
 Route.group(() => {
   Route.get('/prueba', 'EncargadosController.index')
-}).prefix('api/Out/v1/usuarios').middleware('auth')
+}).prefix('api/Out/v1/usuarios')//.middleware('auth')
 
 Route.group(() => {
   Route.delete('/delete/:id', 'UsuariosController.delete')
