@@ -1,6 +1,6 @@
 //import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import jwt from 'jsonwebtoken'
-import Env from '@ioc:Adonis/Core/Env'
+//import Env from '@ioc:Adonis/Core/Env'
 import Usuario from 'App/Models/Usuario'
 import Rol from 'App/Models/Rol'
 import bcrypt from 'bcrypt'
