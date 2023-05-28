@@ -105,7 +105,7 @@ export default class UsuariosController {
 
   public verifyToken(authorizationHeader: string) {
     let token = authorizationHeader.split(' ')[1]
-    jwt.verify(token, Env.get('JWT_SECRET_KEY'), (error: any) => {
+    jwt.verify(token, 'AY5T9Z2X3C4V6B7N8M_1Q2W3E4R5T6Y7U', (error: any) => {
       if(error) {
         throw new Error('Token inválido')
       }
@@ -114,7 +114,7 @@ export default class UsuariosController {
   }
 
   public  generarToken(payload: any){
-    const token = jwt.sign(payload, Env.get('JWT_SECRET_KEY'), {
+    const token = jwt.sign(payload, 'AY5T9Z2X3C4V6B7N8M_1Q2W3E4R5T6Y7U', {
       expiresIn: "60 minutes"
     })
     return token
@@ -122,7 +122,7 @@ export default class UsuariosController {
 
   public obtenerPayload(authorizationHeader: string) {
     let token = authorizationHeader.split(' ')[1]
-    const payload = jwt.verify(token, Env.get('JWT_SECRET_KEY'), {complete: true}).payload
+    const payload = jwt.verify(token, 'AY5T9Z2X3C4V6B7N8M_1Q2W3E4R5T6Y7U', {complete: true}).payload
     return payload
   }
 
